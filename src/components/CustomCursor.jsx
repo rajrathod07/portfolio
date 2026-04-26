@@ -59,7 +59,6 @@ export default function CustomCursor() {
         }}
         transition={{ type: "spring", stiffness: 250, damping: 25 }}
       />
-
     </div>
   );
 }
