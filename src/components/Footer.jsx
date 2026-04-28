@@ -39,8 +39,6 @@ export default function Footer() {
           <span>LINKEDIN</span>
         </a>
 
-
-
       </div>
 
       {/* Right: System Status Sticker */}
