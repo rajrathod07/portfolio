@@ -33,11 +33,8 @@ function App() {
             <Experience />
             <Contact />
           </main>
-          
           <Footer />
-          
         </div>
-
       </div>
     </div>
   );
