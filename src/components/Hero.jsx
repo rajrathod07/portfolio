@@ -1,12 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { Download, Globe, Shield, Zap, Terminal, ArrowUpRight, Eye } from 'lucide-react';
 
 export default function Hero() {
-  // spotlight State for Image Box
-  const [spotlightPos, setSpotlightPos] = useState({ x: 50, y: 50 });
-  const [isHoveringImg, setIsHoveringImg] = useState(false);
-  const imgBoxRef = useRef(null);
-
   const handleScroll = (e, targetId) => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
@@ -20,16 +15,6 @@ export default function Hero() {
 
   const openCV = () => {
     window.open('/Raj_Rathod_CV.pdf', '_blank');
-  };
-
-  // Dynamic Spotlight Calculation
-  const handleImgMouseMove = (e) => {
-    if (!imgBoxRef.current) return;
-    const rect = imgBoxRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setSpotlightPos({ x, y });
-    if (!isHoveringImg) setIsHoveringImg(true);
   };
 
   return (
@@ -49,12 +34,8 @@ export default function Hero() {
 
       <div className="grid grid-cols-12 gap-4 md:gap-6">
         
-        {/* ========================================= */}
-        {/* BOX 1: MAIN CONSOLE (The Title) */}
-        {/* ========================================= */}
-        {/* BALANCED SIZE: Increased height from 320px to 380px on desktop */}
+        {/* BOX 1: MAIN CONSOLE */}
         <div className="col-span-12 lg:col-span-8 bg-white border-[3px] border-[#111] rounded-[2rem] p-6 md:p-12 shadow-[8px_8px_0px_0px_#111] relative overflow-hidden flex flex-col justify-between min-h-[300px] md:h-[380px] transition-all group">
-          {/* Subtle Background Text */}
           <div className="absolute -bottom-4 -right-4 text-[120px] font-black text-[#111]/[0.03] pointer-events-none italic uppercase">Studio</div>
           <div className="absolute top-6 right-8 opacity-10 hidden md:block"><Zap size={36} strokeWidth={3} /></div>
           
@@ -78,43 +59,16 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ========================================= */}
-        {/* BOX 2: PORTRAIT (Balanced Height & Dynamic Color Reveal) */}
-        {/* ========================================= */}
-        {/* BALANCED SIZE: Increased height from 320px to 380px on desktop to match Box 1 */}
-        <div 
-          ref={imgBoxRef}
-          onMouseMove={handleImgMouseMove}
-          onMouseLeave={() => setIsHoveringImg(false)}
-          className="col-span-12 md:col-span-12 lg:col-span-4 relative bg-[#111] border-[3px] border-[#111] rounded-[2rem] overflow-hidden shadow-[8px_8px_0px_0px_#F5FF46] group min-h-[300px] md:h-[380px] cursor-pointer"
-        >
-          {/* THE "NEW" Masked Color Reveal Interaction */}
-          
-          {/* LAYER 1: Grayscale Base Image (Default look) */}
+        {/* BOX 2: PORTRAIT (CLEAN COLOR REVEAL ON HOVER) */}
+        <div className="col-span-12 md:col-span-12 lg:col-span-4 relative bg-[#111] border-[3px] border-[#111] rounded-[2rem] overflow-hidden shadow-[8px_8px_0px_0px_#F5FF46] group min-h-[300px] md:h-[380px] cursor-pointer">
+          {/* One single image tag: grayscale by default, 100% color on group hover */}
           <img 
             src="/profile1.jpg" 
-            alt="Raj Rathod Grayscale" 
-            className="w-full h-full object-cover object-[50%_20%] grayscale-[100%] contrast-[1.1] transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none" 
-          />
-
-          {/* LAYER 2: Color Image with Spotlight Mask (Dynamic Reveal) */}
-          <img 
-            src="/profile1.jpg" 
-            alt="Raj Rathod Color Reveal" 
-            style={{
-              maskImage: isHoveringImg 
-                ? `radial-gradient(circle 80px at ${spotlightPos.x}% ${spotlightPos.y}%, black 0%, black 80%, transparent 100%)`
-                : 'radial-gradient(circle 0px at 50% 50%, black 100%, transparent 100%)',
-              WebkitMaskImage: isHoveringImg 
-                ? `radial-gradient(circle 80px at ${spotlightPos.x}% ${spotlightPos.y}%, black 0%, black 80%, transparent 100%)`
-                : 'radial-gradient(circle 0px at 50% 50%, black 100%, transparent 100%)',
-              transition: isHoveringImg ? 'mask-image 0.1s ease-out, -webkit-mask-image 0.1s ease-out, transform 0.5s ease-out' : 'mask-image 0.5s ease-in-out, -webkit-mask-image 0.5s ease-in-out, transform 0.5s ease-out',
-            }}
-            className="absolute inset-0 w-full h-full object-cover object-[50%_20%] grayscale-0 contrast-100 group-hover:scale-105 pointer-events-none" 
+            alt="Raj Rathod" 
+            className="w-full h-full object-cover object-[50%_20%] grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out group-hover:scale-105" 
           />
           
-          {/* Standard overlays & badge */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none group-hover:opacity-40 transition-opacity"></div>
 
           <div className="absolute inset-0 p-6 flex flex-col justify-end items-center pointer-events-none">
              <div className="bg-[#F5FF46] border-[3px] border-[#111] w-full py-3 rounded-2xl shadow-[6px_6px_0px_0px_#111] transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] flex items-center justify-center gap-3">
@@ -131,7 +85,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* BOX 3: REGISTRY (Bio & Interactive) */}
+        {/* BOX 3: REGISTRY */}
         <div className="col-span-12 md:col-span-5 lg:col-span-4 bg-[#EBE9E1] border-[3px] border-[#111] rounded-[2rem] p-8 flex flex-col justify-between shadow-[8px_8px_0px_0px_#111] min-h-[240px] group transition-all">
           <div className="flex flex-col gap-4">
             <h3 className="text-xl font-black uppercase text-[#111] flex items-center gap-2 tracking-tighter group-hover:text-[#F5FF46] transition-colors">
