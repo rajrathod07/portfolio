@@ -17,22 +17,29 @@ export default function Navbar() {
   }, []);
 
   const handleScroll = (e, targetId) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     setMobileMenuOpen(false);
+    
+    // Look for the element with the ID (ensure your Contact section has id="contact")
     const targetElement = document.getElementById(targetId);
+    
     if (targetElement) {
-      const offset = 80;
+      const offset = 80; // Space for the navbar
       const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      const offsetPosition = elementPosition + window.scrollY - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
-  // Cursor Variants
+  // Cursor Variants - Preserving your display:none logic for default
   const variants = {
-    default: { display:"none" },
-    link: { height: 60, width: 60, backgroundColor: "#F5FF46", mixBlendMode: "difference" },
-    button: { height: 40, width: 120, borderRadius: "10px", backgroundColor: "#F5FF46" }
+    default: { opacity: 0, scale: 0 },
+    link: { opacity: 1, scale: 1, height: 60, width: 60, backgroundColor: "#F5FF46", mixBlendMode: "difference" },
+    button: { opacity: 1, scale: 1, height: 40, width: 120, borderRadius: "10px", backgroundColor: "#F5FF46" }
   };
 
   const enterLink = () => setCursorVariant("link");
@@ -46,7 +53,7 @@ export default function Navbar() {
         className="fixed top-0 left-0 pointer-events-none z-[999] hidden lg:flex items-center justify-center border-2 border-[#111] rounded-full shadow-[2px_2px_0px_#111]"
         animate={variants[cursorVariant]}
         transition={{ type: "spring", stiffness: 500, damping: 28, mass: 0.5 }}
-        style={{ x: mousePos.x - (cursorVariant === "default" ? 8 : 0), y: mousePos.y - (cursorVariant === "default" ? 8 : 0), left: 0, top: 0 }}
+        style={{ x: mousePos.x - (cursorVariant === "button" ? 60 : 30), y: mousePos.y - (cursorVariant === "button" ? 20 : 30), left: 0, top: 0 }}
       >
         {cursorVariant === "link" && <ArrowUpRight size={20} className="text-[#111]" />}
       </motion.div>
@@ -83,13 +90,13 @@ export default function Navbar() {
           <span className="text-xl text-[#111] group-hover:scale-125 group-hover:rotate-12 transition-all">♥</span>
         </div>
 
-        {/* REFINED "LET'S TALK" BUTTON */}
+        {/* REDIRECTION FIXED "LET'S TALK" BUTTON */}
         <div className="hidden md:block">
            <button 
              onMouseEnter={enterButton}
              onMouseLeave={leave}
              onClick={(e) => handleScroll(e, 'contact')} 
-             className="relative bg-[#111] text-white border-[2px] border-[#111] rounded-full px-10 py-3 font-black text-[11px] uppercase tracking-widest shadow-[6px_6px_0px_0px_#F5FF46] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all flex items-center gap-3 overflow-hidden group"
+             className="relative bg-[#111] text-white border-[2px] border-[#111] rounded-full px-10 py-3 font-black text-[11px] uppercase tracking-widest shadow-[6px_6px_0px_0px_#F5FF46] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all flex items-center gap-3 overflow-hidden group cursor-none"
            >
              <span className="relative z-10 flex items-center gap-2">
                Let's Talk <MessageSquare size={14} className="group-hover:rotate-12 transition-transform" />
@@ -120,7 +127,14 @@ export default function Navbar() {
               <a key={item} href={`#${item}`} onClick={(e) => handleScroll(e, item)} className="active:text-[#F5FF46]">{item}</a>
             ))}
             <div className="h-[2px] bg-[#111]/10 w-full"></div>
-            <a href="#contact" onClick={(e) => handleScroll(e, 'contact')} className="text-center bg-[#F5FF46] py-5 rounded-2xl border-[3px] border-[#111] shadow-[6px_6px_0px_0px_#111] active:shadow-none transition-all">Contact</a>
+            {/* Mobile Contact Link Fix */}
+            <a 
+                href="#contact" 
+                onClick={(e) => handleScroll(e, 'contact')} 
+                className="text-center bg-[#F5FF46] py-5 rounded-2xl border-[3px] border-[#111] shadow-[6px_6px_0px_0px_#111] active:shadow-none transition-all"
+            >
+                Contact
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
