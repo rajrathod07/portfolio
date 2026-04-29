@@ -60,13 +60,12 @@ export default function Hero() {
         </div>
 
         {/* BOX 2: PORTRAIT (CLEAN COLOR REVEAL ON HOVER) */}
-        <div className="col-span-12 md:col-span-12 lg:col-span-4 relative bg-[#111] border-[3px] border-[#111] rounded-[2rem] overflow-hidden shadow-[8px_8px_0px_0px_#F5FF46] group min-h-[300px] md:h-[380px] cursor-pointer">
-          {/* One single image tag: grayscale by default, 100% color on group hover */}
-          <img 
-            src="/profile1.jpg" 
-            alt="Raj Rathod" 
-            className="w-full h-full object-cover object-[50%_20%] grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out group-hover:scale-105" 
-          />
+<div className="no-cursor relative z-10 col-span-12 md:col-span-12 lg:col-span-4 bg-[#111] border-[3px] border-[#111] rounded-[2rem] overflow-hidden shadow-[8px_8px_0px_0px_#F5FF46] group min-h-[300px] md:h-[380px] cursor-pointer">
+  <img 
+    src="/profile1.jpg" 
+    alt="Raj Rathod" 
+    className="w-full h-full object-cover object-[50%_20%] grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out group-hover:scale-105" 
+  />
           
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none group-hover:opacity-40 transition-opacity"></div>
 

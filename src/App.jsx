@@ -6,6 +6,7 @@ import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import CustomCursor from './components/CustomCursor';
 
 function App() {
   const [gateState, setGateState] = useState('waiting');
@@ -112,6 +113,7 @@ function App() {
             gateState === 'done' ? 'min-h-screen' : 'h-screen'
           }`}
         >
+
           <div className="absolute inset-0 pointer-events-none opacity-[0.15] bg-[radial-gradient(#111_1.5px,transparent_1.5px)] [background-size:36px_36px] z-0 rounded-2xl md:rounded-[2rem]"></div>
 
           <div className="flex-grow flex flex-col w-full max-w-[1300px] mx-auto relative z-10 h-full">
@@ -128,6 +130,8 @@ function App() {
           </div>
         </div>
       </div>
+                    {/* Spotlight Cursor placed behind main content */}
+          <CustomCursor />
 
     </div>
   );
