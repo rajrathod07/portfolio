@@ -36,8 +36,8 @@ const projects = [
     description: 'A repository of responsive UI components and state architectures developed in-studio.',
     tech: ['React', 'UI_Logic', 'Framer', 'Auth'],
     bgColor: 'bg-[#F5FF46]',
-    github: 'https://github.com/rajrathod07/Internship-Tasks',
-    demo: 'https://rajrathod07.github.io/Internship-Tasks/'
+    github: 'https://github.com/rajrathod07/Internship-Portfolio-HTML-CSS-JavaScript-Tasks-Projects',
+    demo: 'https://rajrathod07.github.io/Internship-Portfolio-HTML-CSS-JavaScript-Tasks-Projects/'
   }
 ];
 
