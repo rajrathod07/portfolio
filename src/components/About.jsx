@@ -40,7 +40,7 @@ export default function About() {
               <p>
                 With hands-on project experience using <span className="text-white font-black">HTML, CSS, JavaScript</span> and 
                 <span className="text-white font-black"> PHP/MySQL</span>, I develop applications ranging from rental platforms to secure password managers. 
-                I am actively expanding my knowledge in <span className="text-[#F5FF46]">Linux, Ethical Hacking, and Python</span> to grow into a robust security professional.
+                I am actively expanding my knowledge in <span className="text-[#F5FF46]">Linux, Ethical Hacking,React and Python</span> to grow into a robust security professional.
               </p>
             </div>
 
@@ -72,10 +72,10 @@ export default function About() {
             
             <div className="space-y-7">
               {[
-                { icon: <Code2 size={20}/>, label: 'Core_Stack', val: 'PHP / MySQL / JS' },
-                { icon: <Shield size={20}/>, label: 'Focus', val: 'Cybersecurity / Frontend/ Backend' },
+                { icon: <Code2 size={20}/>, label: 'Core_Stack', val: 'PHP / MySQL / JS / React' },
+                { icon: <Shield size={20}/>, label: 'Focus', val: 'Cybersecurity / Frontend ' },
                 { icon: <Terminal size={20}/>, label: 'Tools', val: 'Linux / Git / GitHub' },
-                { icon: <Zap size={20}/>, label: 'Education', val: 'BCA (2023-2026)' }
+                { icon: <Zap size={20}/>, label: 'Education', val: 'BCA (2023-2027)' }
               ].map((spec, i) => (
                 <div key={i} className="flex items-center gap-4 group cursor-default">
                   <div className="bg-[#111] p-2.5 rounded-xl text-[#F5FF46] group-hover:rotate-6 transition-transform">
