@@ -40,7 +40,7 @@ export default function Navbar() {
         ))}
         <div className="w-[1px] h-3 bg-white/20 mx-1"></div>
         <a href="https://github.com/rajrathod07" target="_blank" rel="noreferrer" className="hover:text-[#F5FF46]">GH</a>
-        <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-[#F5FF46]">LI</a>
+        <a href="https://www.linkedin.com/in/rajrathod07" target="_blank" rel="noreferrer" className="hover:text-[#F5FF46]">LI</a>
       </nav>
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-8 flex items-center justify-between relative z-[100]">
