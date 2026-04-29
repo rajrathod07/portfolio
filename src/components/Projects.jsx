@@ -1,123 +1,143 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, GitBranch, FolderGit2 } from 'lucide-react';
+import { Code2, ArrowUpRight, FolderGit2, Cpu, Globe, Radio } from 'lucide-react';
 
 const projects = [
   {
     id: '01',
     title: 'PassVault Manager',
-    description: 'A secure password management web application featuring user authentication and a clean, user-friendly interface for database storage.',
-    tech: ['PHP', 'MySQL', 'Secure Coding', 'JS'],
+    description: 'A military-grade password vault with AES-256 encryption logic and secure database bridging.',
+    tech: ['PHP', 'MySQL', 'AES_256', 'JS'],
     bgColor: 'bg-[#F5FF46]',
-    github: 'https://github.com/rajrathod07', // ADD YOUR ACTUAL LINK HERE
-    demo: 'https://passvault.gt.tc'      // ADD YOUR ACTUAL LINK HERE
+    github: 'https://github.com/rajrathod07', 
+    demo: 'https://passvault.gt.tc'      
   },
   {
     id: '02',
-    title: 'Royal Enfield Bike Rent',
-    description: 'Developed a full-featured bike rental platform for Royal Enfield motorcycles. Includes user registration, booking systems, and rental management.',
-    tech: ['PHP', 'MySQL', 'JavaScript', 'HTML/CSS'],
+    title: 'Royal Enfield Rent',
+    description: 'Full-stack rental architecture for Royal Enfield motorcycles. Includes booking and management.',
+    tech: ['PHP', 'MySQL', 'JS', 'Tailwind'],
     bgColor: 'bg-white',
     github: 'https://github.com/rajrathod07/Royal-Enfield-Rent-Project',
     demo: 'https://rerent.page.gd'
   },
   {
     id: '03',
-    title: 'NetFlow Learning Hub',
-    description: 'An educational platform created while studying networking. It simplifies complex cyber topics and network protocols for beginners.',
-    tech: ['Networking', 'Cyber Fundamentals', 'HTML/CSS'],
+    title: 'NetFlow Hub',
+    description: 'An educational hub created to simplify complex networking protocols and cyber-security fundamentals.',
+    tech: ['Networking', 'Cyber_Logic', 'HTML/CSS'],
     bgColor: 'bg-white',
     github: 'https://github.com/rajrathod07/netflow',
     demo: 'https://rajrathod07.github.io/netflow'
   },
   {
     id: '04',
-    title: 'Internship Showcase',
-    description: 'A specialized project developed during my web development internship, demonstrating core UI principles and responsive architecture.',
-    tech: ['Web Dev', 'UI/UX', 'JavaScript', 'Tailwind'],
+    title: 'Internship Portfolio',
+    description: 'A repository of responsive UI components and state architectures developed in-studio.',
+    tech: ['React', 'UI_Logic', 'Framer', 'Auth'],
     bgColor: 'bg-[#F5FF46]',
-    github: 'https://github.com/rajrathod07/Internship-Portfolio-HTML-CSS-JavaScript-Tasks-Projects',
-    demo: 'https://rajrathod07.github.io/Internship-Portfolio-HTML-CSS-JavaScript-Tasks-Projects/'
+    github: 'https://github.com/rajrathod07/Internship-Tasks',
+    demo: 'https://rajrathod07.github.io/Internship-Tasks/'
   }
 ];
 
-export default function Projects() {
-  const forceBlack = { color: '#111111', opacity: 1 };
-
+// Prop hints: enterLink and leave are for your custom cursor expansion
+export default function Projects({ enterLink, leave }) {
   return (
-    <section id="work" className="relative w-full max-w-[1300px] mx-auto px-6 md:px-12 py-24 z-10">
+    <section id="work" className="w-full max-w-[1200px] mx-auto px-6 md:px-10 py-16 md:py-24 select-none cursor-none">
       
-      {/* Section Header */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="flex items-end justify-between border-b-[3px] border-[#111] pb-6 mb-12"
-      >
-        <h2 style={forceBlack} className="text-4xl md:text-6xl font-black uppercase tracking-tighter !text-[#111]">
-          Featured<br />Work
-        </h2>
-        <div className="hidden md:flex gap-3 mb-2">
-          <div className="w-5 h-5 bg-[#111] rounded-full"></div>
-          <div className="w-5 h-5 bg-[#111]/20 rounded-full"></div>
+      {/* SECTION HEADER - Tighter Spacing */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between border-b-[3px] border-[#111] pb-6 mb-12 gap-4">
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-3">
+             <div className="bg-[#FF4646] text-white px-2.5 py-1 rounded border-2 border-[#111] shadow-[2px_2px_0px_#111] flex items-center gap-2">
+                <Radio size={12} className="animate-pulse" />
+                <span className="text-[8px] font-black uppercase tracking-widest">Live_Archive</span>
+             </div>
+             <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#111]/40">Log_Unit_03</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#111] leading-none">
+            Selected_Work
+          </h2>
         </div>
-      </motion.div>
 
-      {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+        <div className="flex items-center gap-3 font-mono text-[9px] font-black border-[2px] border-[#111] px-4 py-2 rounded-xl bg-[#111] text-white shadow-[4px_4px_0px_#F5FF46]">
+          <Cpu size={14} className="text-[#F5FF46] animate-spin [animation-duration:4s]" />
+          OS_CORE: ACTIVE
+        </div>
+      </div>
+
+      {/* COMPACT GRID */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
         {projects.map((project, index) => (
           <motion.div 
             key={index}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
-            className={`relative w-full border-[2px] border-[#111] p-8 lg:p-10 ${project.bgColor} rounded-[32px] shadow-[6px_6px_0px_0px_#111] group hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all duration-300 flex flex-col`}
+            className={`group relative w-full border-[3px] border-[#111] ${project.bgColor} rounded-[2rem] shadow-[8px_8px_0px_0px_#111] hover:shadow-none hover:translate-x-[8px] hover:translate-y-[8px] transition-all duration-300 flex flex-col overflow-hidden`}
           >
-            {/* FIXED PRJ TAG: Added rounded-tr to match the card corner */}
-            <div className="absolute top-[-2px] right-[-2px] bg-[#111] text-[#F5FF46] font-black text-sm px-6 py-2 rounded-bl-2xl rounded-tr-[30px] border-l-[2px] border-b-[2px] border-[#111]">
-              PRJ_{project.id}
+            {/* COMPACT TOP BAR */}
+            <div className="border-b-[2px] border-[#111] px-6 py-3 flex items-center justify-between bg-white/40 group-hover:bg-[#111] group-hover:text-white transition-colors duration-300">
+              <div className="flex items-center gap-2">
+                <FolderGit2 size={16} />
+                <span className="font-mono text-[9px] font-black uppercase tracking-widest">Archive_0{project.id}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-[#00FF41] rounded-full shadow-[0_0_6px_#00FF41] animate-pulse"></div>
+                <span className="text-[8px] font-black uppercase opacity-40 group-hover:opacity-100">Status: Secure</span>
+              </div>
             </div>
 
-            <FolderGit2 size={32} className="mb-6 text-[#111]" />
-
-            <div className="flex-grow">
-              <h3 style={forceBlack} className="text-2xl lg:text-3xl font-black uppercase mb-3 !text-[#111] tracking-tight leading-none">
+            {/* CONTENT AREA: REDUCED PADDING */}
+            <div className="p-6 md:p-8 flex-grow">
+              <h3 className="text-2xl md:text-3xl font-black uppercase mb-3 text-[#111] tracking-tighter leading-none group-hover:tracking-tight transition-all">
                 {project.title}
               </h3>
-              <p style={forceBlack} className="!text-[#111] font-bold text-sm mb-8 leading-relaxed">
+              
+              {/* PURE BLACK TEXT FOR READABILITY */}
+              <p className="text-[#000000] font-bold text-xs md:text-sm mb-8 leading-relaxed max-w-[95%]">
                 {project.description}
               </p>
+
+              {/* TECH CHIPS */}
+              <div className="flex flex-wrap gap-2 mb-2">
+                {project.tech.map(t => (
+                  <span key={t} className="bg-white border-[1.5px] border-[#111] px-3 py-1 rounded-lg text-[8px] font-black uppercase tracking-widest shadow-[2px_2px_0px_0px_#111]">
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            {/* Tech Stack Tags */}
-            <div className="flex flex-wrap gap-2 mb-8 mt-auto">
-              {project.tech.map(t => (
-                <span key={t} style={forceBlack} className="bg-black/5 border-[1.5px] border-[#111] px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest !text-[#111]">
-                  {t}
-                </span>
-              ))}
-            </div>
-
-            {/* Links - NOW DYNAMIC */}
-            <div className="flex gap-6 border-t-[2px] border-[#111]/10 pt-6">
+            {/* BUTTON FOOTER: REFINED SIZE */}
+            <div className="px-6 md:px-8 pb-8 flex gap-3">
               <a 
                 href={project.github} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="flex items-center gap-2 font-black text-xs uppercase !text-[#111] hover:translate-x-1 transition-transform"
+                onMouseEnter={enterLink}
+                onMouseLeave={leave}
+                className="flex-grow bg-[#111] text-white py-3.5 rounded-xl flex items-center justify-center gap-2 font-black text-[10px] uppercase tracking-widest hover:bg-[#F5FF46] hover:text-[#111] transition-all border-[2px] border-[#111] shadow-[4px_4px_0px_0px_#111] hover:shadow-none active:translate-y-1"
               >
-                <GitBranch size={16} /> Code
+                <Code2 size={14} /> Repository
               </a>
               <a 
                 href={project.demo} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 font-black text-xs uppercase !text-[#111] hover:translate-x-1 transition-transform"
+                onMouseEnter={enterLink}
+                onMouseLeave={leave}
+                className="w-16 bg-white border-[2px] border-[#111] rounded-xl flex flex-col items-center justify-center hover:bg-[#111] hover:text-white transition-all group/btn shadow-[4px_4px_0px_0px_#111] hover:shadow-none"
               >
-                <ExternalLink size={16} /> Demo
+                <span className="text-[8px] font-black uppercase mb-0.5">Live</span>
+                <ArrowUpRight size={20} />
               </a>
             </div>
+
+            {/* SCHEMATIC OVERLAY */}
+            <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[radial-gradient(#111_1.2px,transparent_1.2px)] [background-size:20px_20px]"></div>
           </motion.div>
         ))}
       </div>
