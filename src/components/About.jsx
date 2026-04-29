@@ -40,7 +40,7 @@ export default function About() {
               <p>
                 With hands-on project experience using <span className="text-white font-black">HTML, CSS, JavaScript</span> and 
                 <span className="text-white font-black"> PHP/MySQL</span>, I develop applications ranging from rental platforms to secure password managers. 
-                I am actively expanding my knowledge in <span className="text-[#F5FF46]">Linux, Ethical Hacking,React and Python</span> to grow into a robust security professional.
+                I am actively expanding my knowledge in <span className="text-[#F5FF46]">Linux, Ethical Hacking, React and Python</span> to grow into a robust security professional.
               </p>
             </div>
 
