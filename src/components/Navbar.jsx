@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, ArrowUpRight, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [cursorVariant, setCursorVariant] = useState("default");
+
+  // Smooth Cursor Follow
+  useEffect(() => {
+    const mouseMove = (e) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", mouseMove);
+    return () => window.removeEventListener("mousemove", mouseMove);
+  }, []);
 
   const handleScroll = (e, targetId) => {
     e.preventDefault();
@@ -17,55 +28,99 @@ export default function Navbar() {
     }
   };
 
+  // Cursor Variants
+  const variants = {
+    default: { display:"none" },
+    link: { height: 60, width: 60, backgroundColor: "#F5FF46", mixBlendMode: "difference" },
+    button: { height: 40, width: 120, borderRadius: "10px", backgroundColor: "#F5FF46" }
+  };
+
+  const enterLink = () => setCursorVariant("link");
+  const enterButton = () => setCursorVariant("button");
+  const leave = () => setCursorVariant("default");
+
   return (
-    <header className="relative w-full z-[100]">
-      {/* THE CENTER TAB - Balanced Spacing */}
-      <nav className="hidden lg:flex absolute top-[-2px] left-1/2 -translate-x-1/2 bg-[#111] text-white rounded-b-[1.5rem] px-12 py-4 items-center gap-10 text-[11px] font-black uppercase tracking-[0.25em] z-[110] border-x-[2px] border-b-[2px] border-[#111] shadow-xl shadow-black/20">
-        <a href="#skills" onClick={(e) => handleScroll(e, 'skills')} className="hover:text-[#F5FF46] transition-colors cursor-pointer">Skills</a>
-        <a href="#experience" onClick={(e) => handleScroll(e, 'experience')} className="hover:text-[#F5FF46] transition-colors cursor-pointer">Experience</a>
-        <a href="#work" onClick={(e) => handleScroll(e, 'work')} className="hover:text-[#F5FF46] transition-colors cursor-pointer">Work</a>
-        <div className="w-[1px] h-3 bg-white/20 mx-2"></div>
-        <a href="https://github.com/rajrathod07" target="_blank" className="hover:text-[#F5FF46]">GH</a>
-        <a href="https://linkedin.com" target="_blank" className="hover:text-[#F5FF46]">LI</a>
+    <header className="relative w-full z-[100] cursor-none">
+      {/* CUSTOM NAV CURSOR */}
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[999] hidden lg:flex items-center justify-center border-2 border-[#111] rounded-full shadow-[2px_2px_0px_#111]"
+        animate={variants[cursorVariant]}
+        transition={{ type: "spring", stiffness: 500, damping: 28, mass: 0.5 }}
+        style={{ x: mousePos.x - (cursorVariant === "default" ? 8 : 0), y: mousePos.y - (cursorVariant === "default" ? 8 : 0), left: 0, top: 0 }}
+      >
+        {cursorVariant === "link" && <ArrowUpRight size={20} className="text-[#111]" />}
+      </motion.div>
+
+      {/* THE CENTER TAB */}
+      <nav className="hidden lg:flex absolute top-[-2px] left-1/2 -translate-x-1/2 bg-[#111] text-white rounded-b-[1.5rem] px-10 py-4 items-center gap-8 text-[11px] font-black uppercase tracking-[0.25em] z-[110] border-x-[2px] border-b-[2px] border-[#111] shadow-xl">
+        {['skills', 'experience', 'work'].map((item) => (
+          <a
+            key={item}
+            href={`#${item}`}
+            onMouseEnter={enterLink}
+            onMouseLeave={leave}
+            onClick={(e) => handleScroll(e, item)}
+            className="hover:text-[#F5FF46] transition-colors cursor-none relative group"
+          >
+            {item}
+            <span className="absolute -bottom-1 left-0 w-0 h-1 bg-[#F5FF46] transition-all group-hover:w-full"></span>
+          </a>
+        ))}
+        <div className="w-[1px] h-3 bg-white/20 mx-1"></div>
+        <a href="https://github.com/rajrathod07" target="_blank" onMouseEnter={enterLink} onMouseLeave={leave} className="hover:text-[#F5FF46]">GH</a>
+        <a href="https://linkedin.com" target="_blank" onMouseEnter={enterLink} onMouseLeave={leave} className="hover:text-[#F5FF46]">LI</a>
       </nav>
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-8 flex items-center justify-between relative z-[100]">
-        {/* Logo - Perfectly Aligned */}
-        <div onClick={() => window.scrollTo({top:0, behavior:'smooth'})} className="font-black text-2xl tracking-tighter cursor-pointer flex items-center gap-2 group">
+        {/* Logo */}
+        <div 
+          onClick={() => window.scrollTo({top:0, behavior:'smooth'})} 
+          onMouseEnter={enterLink}
+          onMouseLeave={leave}
+          className="font-black text-2xl tracking-tighter cursor-none flex items-center gap-2 group"
+        >
           <span className="text-[#111]">RAJ RATHOD</span>
-          <span className="text-xl text-[#111] group-hover:scale-125 transition-transform">♥</span>
+          <span className="text-xl text-[#111] group-hover:scale-125 group-hover:rotate-12 transition-all">♥</span>
         </div>
 
-        {/* Desktop CTA - Fixed Size */}
+        {/* REFINED "LET'S TALK" BUTTON */}
         <div className="hidden md:block">
            <button 
+             onMouseEnter={enterButton}
+             onMouseLeave={leave}
              onClick={(e) => handleScroll(e, 'contact')} 
-             className="bg-[#111] text-white border-[2px] border-[#111] rounded-full px-10 py-3 font-black text-[11px] uppercase tracking-widest shadow-[6px_6px_0px_0px_#F5FF46] hover:bg-[#F5FF46] hover:text-[#111] transition-all active:shadow-none active:translate-x-[6px] active:translate-y-[6px] cursor-pointer"
+             className="relative bg-[#111] text-white border-[2px] border-[#111] rounded-full px-10 py-3 font-black text-[11px] uppercase tracking-widest shadow-[6px_6px_0px_0px_#F5FF46] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all flex items-center gap-3 overflow-hidden group"
            >
-             Let's Talk
+             <span className="relative z-10 flex items-center gap-2">
+               Let's Talk <MessageSquare size={14} className="group-hover:rotate-12 transition-transform" />
+             </span>
+             <div className="absolute inset-0 bg-[#F5FF46] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
            </button>
         </div>
 
         {/* Mobile Toggle */}
         <div className="md:hidden">
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-3 border-[2px] border-[#111] rounded-xl bg-white shadow-[4px_4px_0px_0px_#111] active:translate-y-[2px] active:shadow-none transition-all">
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+            className="p-3 border-[2px] border-[#111] rounded-xl bg-white shadow-[4px_4px_0px_0px_#111] active:translate-y-[2px] active:shadow-none transition-all"
+          >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* MOBILE NAV (Responsive) */}
+      {/* MOBILE NAV */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div 
-            initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
             className="lg:hidden absolute top-24 left-6 right-6 bg-[#EBE9E1] border-[4px] border-[#111] rounded-[2.5rem] flex flex-col p-10 gap-6 font-black text-2xl uppercase z-[200] shadow-[15px_15px_0px_0px_#111]"
           >
-            <a href="#skills" onClick={(e) => handleScroll(e, 'skills')}>Skills</a>
-            <a href="#experience" onClick={(e) => handleScroll(e, 'experience')}>Experience</a>
-            <a href="#work" onClick={(e) => handleScroll(e, 'work')}>Work</a>
+            {['skills', 'experience', 'work'].map(item => (
+              <a key={item} href={`#${item}`} onClick={(e) => handleScroll(e, item)} className="active:text-[#F5FF46]">{item}</a>
+            ))}
             <div className="h-[2px] bg-[#111]/10 w-full"></div>
-            <a href="#contact" onClick={(e) => handleScroll(e, 'contact')} className="text-center bg-[#F5FF46] py-5 rounded-2xl border-[3px] border-[#111] shadow-[6px_6px_0px_0px_#111]">Contact</a>
+            <a href="#contact" onClick={(e) => handleScroll(e, 'contact')} className="text-center bg-[#F5FF46] py-5 rounded-2xl border-[3px] border-[#111] shadow-[6px_6px_0px_0px_#111] active:shadow-none transition-all">Contact</a>
           </motion.div>
         )}
       </AnimatePresence>
