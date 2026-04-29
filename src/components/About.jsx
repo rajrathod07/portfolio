@@ -27,21 +27,20 @@ export default function About() {
             </div>
 
             <p className="text-xl md:text-2xl font-bold leading-tight mb-8">
-              My name is <span className="text-[#F5FF46]">Raj Rathod</span>. I specialize in building web architectures where 
-              <span className="text-white italic"> High-End Design</span> meets <span className="text-white italic">Cyber Defense</span>.
+              My name is <span className="text-[#F5FF46]">Raj Rathod</span>. I am a motivated developer focused on building applications where 
+              <span className="text-white italic"> Web Development</span> meets <span className="text-white italic">Cybersecurity</span>.
             </p>
 
             <div className="space-y-6 text-white/70 font-medium text-sm md:text-base leading-relaxed max-w-[650px]">
               <p>
-                Based in <span className="text-white font-black underline decoration-[#F5FF46] underline-offset-4">India</span>, 
-                I operate as a Frontend Architect with a specialized focus on **Cyber Security and Pentesting**. 
-                My workflow is dictated by a "Security-First" philosophy—ensuring that every pixel is as resilient as it is beautiful.
+                Currently pursuing my <span className="text-white font-black underline decoration-[#F5FF46] underline-offset-4">Bachelor of Computer Applications (BCA)</span>, 
+                I operate as an eager learner and builder with a growing specialization in secure coding and backend logic. 
+                My workflow is dictated by a strong foundation—learning how to build systems while understanding how to protect them.
               </p>
               <p>
-                With a deep mastery of <span className="text-white font-black">HTML5 & CSS3 (95%)</span> and 
-                <span className="text-white font-black"> JavaScript/PHP (80%+)</span>, I build custom digital experiences 
-                that prioritize data integrity and user experience. Currently, I am expanding my research into advanced 
-                React architectures and secure cloud logic.
+                With hands-on project experience using <span className="text-white font-black">HTML, CSS, JavaScript</span> and 
+                <span className="text-white font-black"> PHP/MySQL</span>, I develop applications ranging from rental platforms to secure password managers. 
+                I am actively expanding my knowledge in <span className="text-[#F5FF46]">Linux, Ethical Hacking, and Python</span> to grow into a robust security professional.
               </p>
             </div>
 
@@ -54,7 +53,7 @@ export default function About() {
                   ))}
                </div>
                <div className="flex flex-col">
-                 <span className="text-[10px] font-black uppercase tracking-widest text-white">Verified_Security_Research</span>
+                 <span className="text-[10px] font-black uppercase tracking-widest text-white">BCA_Student // 2023-2026</span>
                  <span className="text-[8px] font-bold uppercase tracking-widest text-white/30">ID: RR_PORTFOLIO_07</span>
                </div>
             </div>
@@ -73,10 +72,10 @@ export default function About() {
             
             <div className="space-y-7">
               {[
-                { icon: <Code2 size={20}/>, label: 'Main_Stack', val: 'React / PHP / MySQL' },
-                { icon: <Shield size={20}/>, label: 'Specialty', val: 'Web Sec / Pentesting' },
-                { icon: <Globe2 size={20}/>, label: 'Location', val: 'Ahmedabad, India' },
-                { icon: <Zap size={20}/>, label: 'Performance', val: '100% Optimized' }
+                { icon: <Code2 size={20}/>, label: 'Core_Stack', val: 'PHP / MySQL / JS' },
+                { icon: <Shield size={20}/>, label: 'Focus', val: 'Cybersecurity / Backend' },
+                { icon: <Terminal size={20}/>, label: 'Tools', val: 'Linux / Git / GitHub' },
+                { icon: <Zap size={20}/>, label: 'Education', val: 'BCA (2023-2026)' }
               ].map((spec, i) => (
                 <div key={i} className="flex items-center gap-4 group cursor-default">
                   <div className="bg-[#111] p-2.5 rounded-xl text-[#F5FF46] group-hover:rotate-6 transition-transform">
@@ -95,7 +94,7 @@ export default function About() {
           <div className="relative z-[30] mt-10 p-5 bg-white border-[3px] border-[#111] rounded-2xl flex items-center justify-between shadow-[4px_4px_0px_0px_#111]">
             <div className="flex flex-col">
               <span className="text-[8px] font-black uppercase text-[#111]/40">Availability</span>
-              <span className="text-[10px] font-black uppercase text-[#111]">Open to Projects</span>
+              <span className="text-[10px] font-black uppercase text-[#111]">Fresher / Open to Work</span>
             </div>
             <div className="flex gap-1">
               <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
