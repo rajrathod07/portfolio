@@ -22,7 +22,10 @@ export default function Contact() {
       `Email: ${formData.user_email}\n\n` +
       `Message:\n${formData.message}`
     );
-    window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
+    
+    // Fixed: Forces the web version of Gmail to open in a new tab
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${myEmail}&su=${subject}&body=${body}`;
+    window.open(gmailUrl, '_blank');
   };
 
   // High-contrast fix to prevent gray text
