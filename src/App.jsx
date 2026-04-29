@@ -121,6 +121,7 @@ function App() {
             
             <main className="flex-grow flex flex-col w-full pb-12">
               <Hero />
+             <About />
               <Skills />
               <Projects />
               <Experience />
