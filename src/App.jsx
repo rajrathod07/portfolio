@@ -6,7 +6,6 @@ import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import CustomCursor from './components/CustomCursor';
 
 function App() {
   const [gateState, setGateState] = useState('waiting');
@@ -25,36 +24,31 @@ function App() {
   }, [typedText, gateState]);
 
   const handleEnterSite = async () => {
-    // 1. Fullscreen Logic (Triggered immediately on click)
+    // 1. Fullscreen Logic
     const elem = document.documentElement;
     try {
       if (elem.requestFullscreen) {
         await elem.requestFullscreen();
-      } else if (elem.webkitRequestFullscreen) { /* Safari */
+      } else if (elem.webkitRequestFullscreen) {
         await elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) { /* IE11 */
+      } else if (elem.msRequestFullscreen) {
         await elem.msRequestFullscreen();
       }
     } catch (err) {
       console.warn("Fullscreen request ignored or blocked.");
     }
 
-    // 2. Start Animation
     setGateState('launching');
 
-    // 3. Set to 'done' to unlock scrolling
     setTimeout(() => {
       setGateState('done');
     }, 750); 
   };
 
   return (
-    /* The outer container now toggles overflow-hidden to allow scrolling only after entering */
     <div className={`relative bg-[#111] w-full font-sans selection:bg-[#F5FF46] selection:text-[#111] ${gateState === 'done' ? 'min-h-screen overflow-y-auto' : 'h-screen overflow-hidden'}`}>
       
-      {/* ========================================= */}
-      {/* THE WELCOME GATE (The Drop-Down Terminal) */}
-      {/* ========================================= */}
+      {/* WELCOME GATE (Terminal) */}
       {gateState !== 'done' && (
         <div 
           className={`fixed inset-0 z-[100] flex flex-col items-center justify-center p-4 transition-all duration-[700ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${
@@ -105,11 +99,8 @@ function App() {
         </div>
       )}
 
-      {/* ========================================= */}
-      {/* THE MAIN SITE (Parallax Reveal & Framed Canvas) */}
-      {/* ========================================= */}
+      {/* MAIN SITE CONTENT */}
       <div 
-        /* We keep p-2 md:p-4 and scale-100 to maintain the "black edges" canvas look */
         className={`w-full transition-all duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col p-2 md:p-4 ${
           gateState === 'launching' || gateState === 'done' 
             ? 'opacity-100 scale-100 translate-y-0' 
@@ -117,7 +108,6 @@ function App() {
         }`}
       >
         <div 
-          /* rounded-2xl kept to maintain the aesthetic after entering */
           className={`relative w-full flex-grow bg-[#EBE9E1] flex flex-col border-[2px] md:border-[4px] border-[#111] rounded-2xl md:rounded-[2rem] shadow-2xl transition-all duration-[800ms] ${
             gateState === 'done' ? 'min-h-screen' : 'h-screen'
           }`}
@@ -125,7 +115,6 @@ function App() {
           <div className="absolute inset-0 pointer-events-none opacity-[0.15] bg-[radial-gradient(#111_1.5px,transparent_1.5px)] [background-size:36px_36px] z-0 rounded-2xl md:rounded-[2rem]"></div>
 
           <div className="flex-grow flex flex-col w-full max-w-[1300px] mx-auto relative z-10 h-full">
-            <CustomCursor />
             <Navbar />
             
             <main className="flex-grow flex flex-col w-full pb-12">

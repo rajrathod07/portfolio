@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Code2, ShieldCheck, Terminal, Cpu, Database, Activity } from 'lucide-react';
-import CustomCursor from './CustomCursor';
 
 const skillCategories = [
   {
@@ -57,7 +56,7 @@ export default function Skills() {
           SYSTEM_STATUS: OPTIMIZED
         </div>
       </div>
-<CustomCursor />
+
       {/* SKILLS GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {skillCategories.map((category, index) => (

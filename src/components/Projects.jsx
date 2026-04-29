@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, ArrowUpRight, FolderGit2, Cpu, Globe, Radio } from 'lucide-react';
+import { Code2, ArrowUpRight, FolderGit2, Cpu, Radio } from 'lucide-react';
 
 const projects = [
   {
@@ -41,12 +41,11 @@ const projects = [
   }
 ];
 
-// Prop hints: enterLink and leave are for your custom cursor expansion
-export default function Projects({ enterLink, leave }) {
+export default function Projects() {
   return (
-    <section id="work" className="w-full max-w-[1200px] mx-auto px-6 md:px-10 py-16 md:py-24 select-none cursor-none">
+    <section id="work" className="w-full max-w-[1200px] mx-auto px-6 md:px-10 py-16 md:py-24 select-none">
       
-      {/* SECTION HEADER - Tighter Spacing */}
+      {/* SECTION HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b-[3px] border-[#111] pb-6 mb-12 gap-4">
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-3">
@@ -78,7 +77,7 @@ export default function Projects({ enterLink, leave }) {
             transition={{ delay: index * 0.1 }}
             className={`group relative w-full border-[3px] border-[#111] ${project.bgColor} rounded-[2rem] shadow-[8px_8px_0px_0px_#111] hover:shadow-none hover:translate-x-[8px] hover:translate-y-[8px] transition-all duration-300 flex flex-col overflow-hidden`}
           >
-            {/* COMPACT TOP BAR */}
+            {/* TOP BAR */}
             <div className="border-b-[2px] border-[#111] px-6 py-3 flex items-center justify-between bg-white/40 group-hover:bg-[#111] group-hover:text-white transition-colors duration-300">
               <div className="flex items-center gap-2">
                 <FolderGit2 size={16} />
@@ -90,13 +89,12 @@ export default function Projects({ enterLink, leave }) {
               </div>
             </div>
 
-            {/* CONTENT AREA: REDUCED PADDING */}
+            {/* CONTENT AREA */}
             <div className="p-6 md:p-8 flex-grow">
               <h3 className="text-2xl md:text-3xl font-black uppercase mb-3 text-[#111] tracking-tighter leading-none group-hover:tracking-tight transition-all">
                 {project.title}
               </h3>
               
-              {/* PURE BLACK TEXT FOR READABILITY */}
               <p className="text-[#000000] font-bold text-xs md:text-sm mb-8 leading-relaxed max-w-[95%]">
                 {project.description}
               </p>
@@ -111,14 +109,12 @@ export default function Projects({ enterLink, leave }) {
               </div>
             </div>
 
-            {/* BUTTON FOOTER: REFINED SIZE */}
+            {/* BUTTON FOOTER */}
             <div className="px-6 md:px-8 pb-8 flex gap-3">
               <a 
                 href={project.github} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                onMouseEnter={enterLink}
-                onMouseLeave={leave}
                 className="flex-grow bg-[#111] text-white py-3.5 rounded-xl flex items-center justify-center gap-2 font-black text-[10px] uppercase tracking-widest hover:bg-[#F5FF46] hover:text-[#111] transition-all border-[2px] border-[#111] shadow-[4px_4px_0px_0px_#111] hover:shadow-none active:translate-y-1"
               >
                 <Code2 size={14} /> Repository
@@ -127,9 +123,7 @@ export default function Projects({ enterLink, leave }) {
                 href={project.demo} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                onMouseEnter={enterLink}
-                onMouseLeave={leave}
-                className="w-16 bg-white border-[2px] border-[#111] rounded-xl flex flex-col items-center justify-center hover:bg-[#111] hover:text-white transition-all group/btn shadow-[4px_4px_0px_0px_#111] hover:shadow-none"
+                className="w-16 bg-white border-[2px] border-[#111] rounded-xl flex flex-col items-center justify-center hover:bg-[#111] hover:text-white transition-all group/btn shadow-[4px_4px_0px_0px_#111] hover:shadow-none active:translate-y-1"
               >
                 <span className="text-[8px] font-black uppercase mb-0.5">Live</span>
                 <ArrowUpRight size={20} />
