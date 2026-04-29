@@ -23,23 +23,24 @@ export default function About() {
           <div className="relative z-[30] flex flex-col h-full text-white">
             <div className="flex items-center gap-2 mb-8 opacity-40">
               <Terminal size={16} />
-              <span className="font-mono text-[10px] uppercase tracking-widest">root@raj_rathod:~# run frontend_bio.sh</span>
+              <span className="font-mono text-[10px] uppercase tracking-widest">root@raj_rathod:~# run bio_script.sh</span>
             </div>
 
             <p className="text-xl md:text-2xl font-bold leading-tight mb-8">
               My name is <span className="text-[#F5FF46]">Raj Rathod</span>. I am a motivated developer focused on building applications where 
-              <span className="text-white italic"> High-End React Design</span> meets <span className="text-white italic">Client-Side Security</span>.
+              <span className="text-white italic"> Web Development</span> meets <span className="text-white italic">Cybersecurity</span>.
             </p>
 
             <div className="space-y-6 text-white/70 font-medium text-sm md:text-base leading-relaxed max-w-[650px]">
               <p>
                 Currently pursuing my <span className="text-white font-black underline decoration-[#F5FF46] underline-offset-4">Bachelor of Computer Applications (BCA)</span>, 
-                I operate as an eager learner and builder with a growing specialization in the React ecosystem and secure coding[cite: 5, 9]. 
-                My workflow is dictated by a strong foundation—building interactive, high-performance user interfaces while understanding how to protect them.
+                I operate as an eager learner and builder with a growing specialization in secure coding and backend logic. 
+                My workflow is dictated by a strong foundation—learning how to build systems while understanding how to protect them.
               </p>
               <p>
-                With hands-on project experience using <span className="text-white font-black">HTML, CSS, JavaScript, and React</span>, 
-                I develop seamless digital experiences. I am actively expanding my knowledge in <span className="text-[#F5FF46]">Linux, Ethical Hacking, and modern frontend tools</span> to grow into a robust security-conscious professional[cite: 6].
+                With hands-on project experience using <span className="text-white font-black">HTML, CSS, JavaScript</span> and 
+                <span className="text-white font-black"> PHP/MySQL</span>, I develop applications ranging from rental platforms to secure password managers. 
+                I am actively expanding my knowledge in <span className="text-[#F5FF46]">Linux, Ethical Hacking, and Python</span> to grow into a robust security professional.
               </p>
             </div>
 
@@ -71,8 +72,8 @@ export default function About() {
             
             <div className="space-y-7">
               {[
-                { icon: <Code2 size={20}/>, label: 'Core_Stack', val: 'React.js / JS / CSS' },
-                { icon: <Shield size={20}/>, label: 'Focus', val: 'Frontend UI / Web Sec' },
+                { icon: <Code2 size={20}/>, label: 'Core_Stack', val: 'PHP / MySQL / JS' },
+                { icon: <Shield size={20}/>, label: 'Focus', val: 'Cybersecurity / Frontend/ Backend' },
                 { icon: <Terminal size={20}/>, label: 'Tools', val: 'Linux / Git / GitHub' },
                 { icon: <Zap size={20}/>, label: 'Education', val: 'BCA (2023-2026)' }
               ].map((spec, i) => (
@@ -105,7 +106,7 @@ export default function About() {
 
       {/* 4. BACKGROUND DECO */}
       <div className="absolute top-1/2 left-0 -translate-x-1/4 -translate-y-1/2 opacity-[0.02] pointer-events-none select-none -rotate-90 z-0">
-        <span className="text-[280px] font-black uppercase tracking-tighter">React</span>
+        <span className="text-[280px] font-black uppercase tracking-tighter">Secure</span>
       </div>
 
     </section>
