@@ -72,16 +72,12 @@ export default function Navbar() {
     <>
       {/* 1. STICKY SLIDING DRAWER LAYER */}
       <div 
-        // FAST & EXTREMELY BOUNCY bezier curve (1.8 overshoot)
-        // This makes it detach slightly from the edge during the bounce!
         className={`sticky top-0 z-[120] w-full flex justify-center pointer-events-none transition-transform duration-[550ms] ease-[cubic-bezier(0.4,1.8,0.4,1)] ${
           isNavVisible ? 'translate-y-0' : '-translate-y-[130%]'
         }`}
       >
         
         {/* DESKTOP NOTCH */}
-        {/* Notice the border-[3px] (all sides) and rounded-t-2xl. 
-            The -mt-[18px] hides the top border and corners at rest, but they reveal during the bounce! */}
         <nav className="hidden lg:flex pointer-events-auto bg-[#111] text-white rounded-b-[1.75rem] rounded-t-2xl px-10 pb-4 pt-[34px] items-center gap-8 text-[12px] font-black uppercase tracking-[0.2em] shadow-[0px_12px_30px_rgba(0,0,0,0.35)] border-[3px] border-[#111] -mt-[18px]">
           {['skills', 'experience', 'work'].map((item) => (
             <a
@@ -100,13 +96,13 @@ export default function Navbar() {
         </nav>
 
         {/* MOBILE TOP-RIGHT CORNER CUTOUT */}
-        {/* -right-4 completely breaks it out of the padding and pushes it flush against the black bezel */}
-        <div className="w-full flex justify-end lg:hidden pointer-events-none absolute -right-4 top-0">
+        {/* Pushed further right (-right-[20px]) to completely close the gap you see in the screenshot */}
+        <div className="w-full flex justify-end lg:hidden pointer-events-none absolute -right-[20px] top-0">
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-            // rounded-l-[1.75rem] on the left side, flat on the right.
-            // pt-[34px] and -mt-[18px] hides the top border at rest but centers the icon perfectly.
-            className="pointer-events-auto flex items-center justify-center pb-4 pt-[34px] pl-5 pr-5 border-[3px] border-r-0 border-[#111] rounded-l-[1.75rem] bg-[#111] text-white shadow-[-5px_5px_15px_rgba(0,0,0,0.3)] active:bg-[#222] transition-colors -mt-[18px]"
+            // Removed top and right borders entirely (border-b-[3px] border-l-[3px]).
+            // Pushed further up into the ceiling (-mt-[24px]) so it fuses seamlessly.
+            className="pointer-events-auto flex items-center justify-center pb-4 pt-[38px] pl-6 pr-5 border-b-[3px] border-l-[3px] border-[#111] rounded-bl-[1.75rem] bg-[#111] text-white shadow-[-6px_6px_15px_rgba(0,0,0,0.4)] active:bg-[#222] transition-colors -mt-[24px]"
           >
             {mobileMenuOpen ? <X size={26} className="transition-transform duration-300 rotate-90" /> : <Menu size={26} className="transition-transform duration-300" />}
           </button>
