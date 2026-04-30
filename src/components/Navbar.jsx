@@ -72,13 +72,16 @@ export default function Navbar() {
     <>
       {/* 1. STICKY SLIDING DRAWER LAYER */}
       <div 
-        className={`sticky top-0 z-[120] w-full flex justify-center pointer-events-none transition-transform duration-[550ms] ease-[cubic-bezier(0.4,1.8,0.4,1)] ${
+        // Refined bounce curve. Snappy but won't break the illusion.
+        className={`sticky top-0 z-[120] w-full flex justify-center pointer-events-none transition-transform duration-[550ms] ease-[cubic-bezier(0.4,1.5,0.4,1)] ${
           isNavVisible ? 'translate-y-0' : '-translate-y-[130%]'
         }`}
       >
         
         {/* DESKTOP NOTCH */}
-        <nav className="hidden lg:flex pointer-events-auto bg-[#111] text-white rounded-b-[1.75rem] rounded-t-2xl px-10 pb-4 pt-[34px] items-center gap-8 text-[12px] font-black uppercase tracking-[0.2em] shadow-[0px_12px_30px_rgba(0,0,0,0.35)] border-[3px] border-[#111] -mt-[18px]">
+        {/* FIX: Removed top border, increased top padding (pt-[46px]) and top margin (-mt-[30px]). 
+            This acts as a "hidden neck" so the bounce never reveals a gap. */}
+        <nav className="hidden lg:flex pointer-events-auto bg-[#111] text-white rounded-b-[1.75rem] px-10 pb-4 pt-[46px] items-center gap-8 text-[12px] font-black uppercase tracking-[0.2em] shadow-[0px_12px_30px_rgba(0,0,0,0.35)] border-x-[3px] border-b-[3px] border-[#111] -mt-[30px]">
           {['skills', 'experience', 'work'].map((item) => (
             <a
               key={item}
@@ -96,13 +99,12 @@ export default function Navbar() {
         </nav>
 
         {/* MOBILE TOP-RIGHT CORNER CUTOUT */}
-        {/* Pushed further right (-right-[20px]) to completely close the gap you see in the screenshot */}
-        <div className="w-full flex justify-end lg:hidden pointer-events-none absolute -right-[20px] top-0">
+        {/* FIX: Pushed to -right-[28px] and -mt-[32px] to completely eat up any background gaps.
+            Added extra right/top padding so the icon stays perfectly centered in the visible area. */}
+        <div className="w-full flex justify-end lg:hidden pointer-events-none absolute -right-[28px] top-0">
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-            // Removed top and right borders entirely (border-b-[3px] border-l-[3px]).
-            // Pushed further up into the ceiling (-mt-[24px]) so it fuses seamlessly.
-            className="pointer-events-auto flex items-center justify-center pb-4 pt-[38px] pl-6 pr-5 border-b-[3px] border-l-[3px] border-[#111] rounded-bl-[1.75rem] bg-[#111] text-white shadow-[-6px_6px_15px_rgba(0,0,0,0.4)] active:bg-[#222] transition-colors -mt-[24px]"
+            className="pointer-events-auto flex items-center justify-center pb-4 pt-[46px] pl-6 pr-8 border-b-[3px] border-l-[3px] border-[#111] rounded-bl-[1.75rem] bg-[#111] text-white shadow-[-6px_6px_15px_rgba(0,0,0,0.4)] active:bg-[#222] transition-colors -mt-[32px]"
           >
             {mobileMenuOpen ? <X size={26} className="transition-transform duration-300 rotate-90" /> : <Menu size={26} className="transition-transform duration-300" />}
           </button>
