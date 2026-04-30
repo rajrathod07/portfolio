@@ -59,13 +59,13 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* BOX 2: PORTRAIT (CLEAN COLOR REVEAL ON HOVER) */}
-<div className="no-cursor relative z-10 col-span-12 md:col-span-12 lg:col-span-4 bg-[#111] border-[3px] border-[#111] rounded-[2rem] overflow-hidden shadow-[8px_8px_0px_0px_#F5FF46] group min-h-[300px] md:h-[380px] cursor-pointer">
-  <img 
-    src="/profile1.jpg" 
-    alt="Raj Rathod" 
-    className="w-full h-full object-cover object-[50%_20%] grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out group-hover:scale-105" 
-  />
+        {/* BOX 2: PORTRAIT */}
+        <div className="no-cursor relative z-10 col-span-12 md:col-span-12 lg:col-span-4 bg-[#111] border-[3px] border-[#111] rounded-[2rem] overflow-hidden shadow-[8px_8px_0px_0px_#F5FF46] group min-h-[300px] md:h-[380px] cursor-pointer">
+          <img 
+            src="/profile1.jpg" 
+            alt="Raj Rathod" 
+            className="w-full h-full object-cover object-[50%_20%] grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out group-hover:scale-105" 
+          />
           
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none group-hover:opacity-40 transition-opacity"></div>
 
@@ -138,7 +138,8 @@ export default function Hero() {
         </div>
       </div>
 
-      <style jsx>{`
+      {/* FIX: Removed the `jsx` attribute. It is now a standard style block */}
+      <style>{`
         @keyframes marquee {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
