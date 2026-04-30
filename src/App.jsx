@@ -55,7 +55,6 @@ function App() {
             gateState === 'launching' ? 'translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
           }`}
         >
-          {/* ... (Terminal code remains exactly the same) ... */}
           <div className="absolute inset-0 bg-[radial-gradient(#444_2px,transparent_2px)] [background-size:40px_40px] opacity-20 animate-[pulse_3s_ease-in-out_infinite] z-0"></div>
 
           <div className="relative z-10 w-full max-w-[550px] bg-[#EBE9E1] rounded-2xl border-[4px] border-[#111] flex flex-col overflow-hidden shadow-[12px_12px_0px_0px_#111]">
@@ -97,7 +96,6 @@ function App() {
       )}
 
       {/* MAIN SITE CONTENT */}
-      {/* 1. Adjusted padding: px-2 pt-2 pb-1 (mobile) and md:px-4 md:pt-4 md:pb-2 (desktop) for a thinner bottom edge */}
       <div 
         className={`absolute inset-0 transition-all duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col px-2 pt-2 pb-1 md:px-4 md:pt-4 md:pb-2 ${
           gateState === 'launching' || gateState === 'done' 
@@ -110,10 +108,9 @@ function App() {
           <div className="absolute inset-0 pointer-events-none opacity-[0.15] bg-[radial-gradient(#111_1.5px,transparent_1.5px)] [background-size:36px_36px] z-0"></div>
 
           <div className="flex flex-col w-full h-full relative z-10">
-            {/* 2. Scrolling area now contains the Navbar too */}
-            <div className="flex-grow overflow-y-auto scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            {/* FIX: Added overflow-x-hidden here to permanently kill horizontal scrolling! */}
+            <div className="flex-grow overflow-y-auto overflow-x-hidden scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               <main className="flex flex-col w-full max-w-[1300px] mx-auto pb-12 px-4 md:px-0">
-                {/* Navbar is now inside the scrollable content */}
                 <Navbar />
                 <Hero />
                 <About />

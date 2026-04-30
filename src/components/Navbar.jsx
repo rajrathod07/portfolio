@@ -7,7 +7,6 @@ export default function Navbar() {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Scroll detection to hide/show the drawer
   useEffect(() => {
     const scrollContainer = document.querySelector('.overflow-y-auto');
     if (!scrollContainer) return;
@@ -15,7 +14,6 @@ export default function Navbar() {
     const handleScroll = () => {
       const currentScrollY = scrollContainer.scrollTop;
       
-      // Hide on scroll down, show on scroll up
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
         setIsNavVisible(false);
         setMobileMenuOpen(false); 
@@ -53,7 +51,6 @@ export default function Navbar() {
     }
   };
 
-  // High-energy, fast spring animations for the mobile dropdown
   const menuVars = {
     hidden: { opacity: 0, x: 50, scale: 0.95 },
     visible: { 
@@ -71,16 +68,14 @@ export default function Navbar() {
   return (
     <>
       {/* 1. STICKY SLIDING DRAWER LAYER */}
+      {/* FIX: Added w-[calc(100%+2rem)] -ml-4 so it breaks out of the app padding and spans edge-to-edge! */}
       <div 
-        // Refined bounce curve. Snappy but won't break the illusion.
-        className={`sticky top-0 z-[120] w-full flex justify-center pointer-events-none transition-transform duration-[550ms] ease-[cubic-bezier(0.4,1.5,0.4,1)] ${
+        className={`sticky top-0 z-[120] w-[calc(100%+2rem)] -ml-4 md:w-full md:ml-0 flex justify-center pointer-events-none transition-transform duration-[550ms] ease-[cubic-bezier(0.4,1.5,0.4,1)] ${
           isNavVisible ? 'translate-y-0' : '-translate-y-[130%]'
         }`}
       >
         
         {/* DESKTOP NOTCH */}
-        {/* FIX: Removed top border, increased top padding (pt-[46px]) and top margin (-mt-[30px]). 
-            This acts as a "hidden neck" so the bounce never reveals a gap. */}
         <nav className="hidden lg:flex pointer-events-auto bg-[#111] text-white rounded-b-[1.75rem] px-10 pb-4 pt-[46px] items-center gap-8 text-[12px] font-black uppercase tracking-[0.2em] shadow-[0px_12px_30px_rgba(0,0,0,0.35)] border-x-[3px] border-b-[3px] border-[#111] -mt-[30px]">
           {['skills', 'experience', 'work'].map((item) => (
             <a
@@ -99,12 +94,11 @@ export default function Navbar() {
         </nav>
 
         {/* MOBILE TOP-RIGHT CORNER CUTOUT */}
-        {/* FIX: Pushed to -right-[28px] and -mt-[32px] to completely eat up any background gaps.
-            Added extra right/top padding so the icon stays perfectly centered in the visible area. */}
-        <div className="w-full flex justify-end lg:hidden pointer-events-none absolute -right-[28px] top-0">
+        {/* FIX: Now securely anchored to absolute right-0 and perfectly bleeds 2px into the border! */}
+        <div className="absolute right-0 top-0 lg:hidden pointer-events-none">
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-            className="pointer-events-auto flex items-center justify-center pb-4 pt-[46px] pl-6 pr-8 border-b-[3px] border-l-[3px] border-[#111] rounded-bl-[1.75rem] bg-[#111] text-white shadow-[-6px_6px_15px_rgba(0,0,0,0.4)] active:bg-[#222] transition-colors -mt-[32px]"
+            className="pointer-events-auto flex items-center justify-center pb-4 pt-[46px] pl-6 pr-5 border-b-[3px] border-l-[3px] border-[#111] rounded-bl-[1.75rem] bg-[#111] text-white shadow-[-6px_6px_15px_rgba(0,0,0,0.4)] active:bg-[#222] transition-colors -mt-[36px] -mr-[2px]"
           >
             {mobileMenuOpen ? <X size={26} className="transition-transform duration-300 rotate-90" /> : <Menu size={26} className="transition-transform duration-300" />}
           </button>
