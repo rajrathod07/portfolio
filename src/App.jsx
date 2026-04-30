@@ -15,7 +15,6 @@ function App() {
   
   const targetText = "loading_raj_workspace...";
 
-  // Ultra-fast typing effect
   useEffect(() => {
     if (typedText.length < targetText.length && gateState === 'waiting') {
       const timeout = setTimeout(() => {
@@ -26,7 +25,6 @@ function App() {
   }, [typedText, gateState]);
 
   const handleEnterSite = async () => {
-    // 1. Fullscreen Logic
     const elem = document.documentElement;
     try {
       if (elem.requestFullscreen) {
@@ -48,7 +46,7 @@ function App() {
   };
 
   return (
-    <div className={`relative bg-[#111] w-full font-sans selection:bg-[#F5FF46] selection:text-[#111] ${gateState === 'done' ? 'min-h-screen overflow-y-auto' : 'h-screen overflow-hidden'}`}>
+    <div className={`relative bg-[#111] w-full font-sans selection:bg-[#F5FF46] selection:text-[#111] h-[100dvh] overflow-hidden`}>
       
       {/* WELCOME GATE (Terminal) */}
       {gateState !== 'done' && (
@@ -57,10 +55,10 @@ function App() {
             gateState === 'launching' ? 'translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
           }`}
         >
+          {/* ... (Terminal code remains exactly the same) ... */}
           <div className="absolute inset-0 bg-[radial-gradient(#444_2px,transparent_2px)] [background-size:40px_40px] opacity-20 animate-[pulse_3s_ease-in-out_infinite] z-0"></div>
 
           <div className="relative z-10 w-full max-w-[550px] bg-[#EBE9E1] rounded-2xl border-[4px] border-[#111] flex flex-col overflow-hidden shadow-[12px_12px_0px_0px_#111]">
-            
             <div className="w-full bg-white border-b-[4px] border-[#111] px-4 py-3 flex items-center justify-between">
               <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-[#111]"></div>
@@ -73,17 +71,14 @@ function App() {
 
             <div className="p-8 md:p-12 flex flex-col items-center text-center relative">
               <div className="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] [background-size:16px_16px] opacity-[0.03] z-0"></div>
-
               <div className="relative z-10 w-full">
                 <div className="h-6 mb-6 font-mono text-sm font-bold text-[#111]/70 uppercase tracking-widest flex items-center justify-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse border border-[#111]"></div>
                   <span>{typedText}<span className="animate-pulse bg-[#111] text-[#111] ml-0.5">_</span></span>
                 </div>
-
                 <h1 className="text-5xl md:text-6xl font-black uppercase tracking-tighter text-[#111] leading-[0.9] mb-8">
                   Raj's<br/>Workspace
                 </h1>
-
                 <button 
                   onClick={handleEnterSite}
                   disabled={gateState !== 'waiting' || typedText.length < targetText.length}
@@ -102,39 +97,40 @@ function App() {
       )}
 
       {/* MAIN SITE CONTENT */}
+      {/* 1. Adjusted padding: px-2 pt-2 pb-1 (mobile) and md:px-4 md:pt-4 md:pb-2 (desktop) for a thinner bottom edge */}
       <div 
-        className={`w-full transition-all duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col p-2 md:p-4 ${
+        className={`absolute inset-0 transition-all duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col px-2 pt-2 pb-1 md:px-4 md:pt-4 md:pb-2 ${
           gateState === 'launching' || gateState === 'done' 
             ? 'opacity-100 scale-100 translate-y-0' 
             : 'opacity-0 scale-[0.95] -translate-y-8 pointer-events-none'
         }`}
       >
-        <div 
-          className={`relative w-full flex-grow bg-[#EBE9E1] flex flex-col border-[2px] md:border-[4px] border-[#111] rounded-2xl md:rounded-[2rem] shadow-2xl transition-all duration-[800ms] ${
-            gateState === 'done' ? 'min-h-screen' : 'h-screen'
-          }`}
-        >
+        <div className="relative w-full h-full bg-[#EBE9E1] flex flex-col border-[2px] md:border-[4px] border-[#111] rounded-2xl md:rounded-[2rem] shadow-2xl overflow-hidden">
+          
+          <div className="absolute inset-0 pointer-events-none opacity-[0.15] bg-[radial-gradient(#111_1.5px,transparent_1.5px)] [background-size:36px_36px] z-0"></div>
 
-          <div className="absolute inset-0 pointer-events-none opacity-[0.15] bg-[radial-gradient(#111_1.5px,transparent_1.5px)] [background-size:36px_36px] z-0 rounded-2xl md:rounded-[2rem]"></div>
-
-          <div className="flex-grow flex flex-col w-full max-w-[1300px] mx-auto relative z-10 h-full">
-            <Navbar />
-            
-            <main className="flex-grow flex flex-col w-full pb-12">
-              <Hero />
-             <About />
-              <Skills />
-              <Projects />
-              <Experience />
-              <Contact />
-            </main>
-            <Footer />
+          <div className="flex flex-col w-full h-full relative z-10">
+            {/* 2. Scrolling area now contains the Navbar too */}
+            <div className="flex-grow overflow-y-auto scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              <main className="flex flex-col w-full max-w-[1300px] mx-auto pb-12 px-4 md:px-0">
+                {/* Navbar is now inside the scrollable content */}
+                <Navbar />
+                <Hero />
+                <About />
+                <Skills />
+                <Projects />
+                <Experience />
+                <Contact />
+              </main>
+              <div className="w-full max-w-[1300px] mx-auto">
+                <Footer />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-                    {/* Spotlight Cursor placed behind main content */}
-          <CustomCursor />
-
+      
+      <CustomCursor />
     </div>
   );
 }
