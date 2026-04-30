@@ -23,23 +23,22 @@ export default function Contact() {
       `Message:\n${formData.message}`
     );
     
-    // Fixed: Forces the web version of Gmail to open in a new tab
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${myEmail}&su=${subject}&body=${body}`;
     window.open(gmailUrl, '_blank');
   };
 
-  // High-contrast fix to prevent gray text
   const forceBlack = { color: '#111111', opacity: 1 };
 
   return (
-    <section id="contact" className="relative w-full max-w-[1300px] mx-auto px-6 md:px-12 py-24 z-10">
+    /* Changed px-6 to px-2 for a wider mobile look */
+    <section id="contact" className="relative w-full max-w-[1300px] mx-auto px-2 md:px-12 py-24 z-10">
       
-      {/* SECTION HEADER */}
+      {/* SECTION HEADER - added px-2 for mobile so text doesn't touch the screen edge */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        className="flex items-end justify-between border-b-[3px] border-[#111] pb-6 mb-16"
+        className="flex items-end justify-between border-b-[3px] border-[#111] pb-6 mb-16 mx-2 md:mx-0"
       >
         <h2 style={forceBlack} className="text-4xl md:text-6xl font-black uppercase tracking-tighter !text-[#111]">
           Let's<br />Talk
@@ -54,8 +53,8 @@ export default function Contact() {
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-8">
         
-        {/* LEFT COLUMN: OLD TEXT RESTORED */}
-        <motion.div className="lg:col-span-2 flex flex-col justify-between">
+        {/* LEFT COLUMN */}
+        <motion.div className="lg:col-span-2 flex flex-col justify-between px-2 md:px-0">
           <div>
             <div className="inline-flex items-center gap-2 bg-[#111] text-white px-4 py-2 rounded-full font-black text-xs uppercase tracking-widest mb-6">
               <MessageSquare size={14} /> Open For Work
@@ -73,9 +72,9 @@ export default function Contact() {
           </div>
         </motion.div>
 
-        {/* RIGHT COLUMN: OLD STYLE CARD RESTORED */}
+        {/* RIGHT COLUMN: Adjusted padding and rounded corners for mobile */}
         <motion.div 
-          className="lg:col-span-3 relative bg-white border-[2px] border-[#111] p-6 sm:p-10 rounded-tr-[3.5rem] rounded-bl-[3.5rem] rounded-tl-xl rounded-br-xl shadow-[4px_4px_0px_0px_rgba(17,17,17,1)]"
+          className="lg:col-span-3 relative bg-white border-[2px] border-[#111] p-5 sm:p-10 rounded-tr-[2rem] sm:rounded-tr-[3.5rem] rounded-bl-[2rem] sm:rounded-bl-[3.5rem] rounded-tl-xl rounded-br-xl shadow-[4px_4px_0px_0px_rgba(17,17,17,1)]"
         >
           {/* Top Right Mini Tab */}
           <div className="absolute -top-[2px] -right-[2px] bg-[#111] rounded-bl-2xl rounded-tr-xl px-4 py-2 border-[2px] border-[#111] flex gap-1.5 items-center justify-center">
