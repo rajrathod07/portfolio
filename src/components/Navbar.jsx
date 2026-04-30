@@ -7,6 +7,7 @@ export default function Navbar() {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  // Scroll detection to hide/show the drawer
   useEffect(() => {
     const scrollContainer = document.querySelector('.overflow-y-auto');
     if (!scrollContainer) return;
@@ -51,6 +52,7 @@ export default function Navbar() {
     }
   };
 
+  // High-energy, fast spring animations for the mobile dropdown
   const menuVars = {
     hidden: { opacity: 0, x: 50, scale: 0.95 },
     visible: { 
@@ -68,15 +70,16 @@ export default function Navbar() {
   return (
     <>
       {/* 1. STICKY SLIDING DRAWER LAYER */}
-      {/* FIX: Added w-[calc(100%+2rem)] -ml-4 so it breaks out of the app padding and spans edge-to-edge! */}
+      {/* Increased the width to w-[calc(100%+3rem)] and -ml-6 to ensure a huge overlap on the sides */}
       <div 
-        className={`sticky top-0 z-[120] w-[calc(100%+2rem)] -ml-4 md:w-full md:ml-0 flex justify-center pointer-events-none transition-transform duration-[550ms] ease-[cubic-bezier(0.4,1.5,0.4,1)] ${
+        className={`sticky top-0 z-[120] w-[calc(100%+3rem)] -ml-6 md:w-[calc(100%+2rem)] md:-ml-4 lg:w-full lg:ml-0 flex justify-center pointer-events-none transition-transform duration-[550ms] ease-[cubic-bezier(0.4,1.5,0.4,1)] ${
           isNavVisible ? 'translate-y-0' : '-translate-y-[130%]'
         }`}
       >
         
         {/* DESKTOP NOTCH */}
-        <nav className="hidden lg:flex pointer-events-auto bg-[#111] text-white rounded-b-[1.75rem] px-10 pb-4 pt-[46px] items-center gap-8 text-[12px] font-black uppercase tracking-[0.2em] shadow-[0px_12px_30px_rgba(0,0,0,0.35)] border-x-[3px] border-b-[3px] border-[#111] -mt-[30px]">
+        {/* Increased top margin and padding so it overlaps the top edge massively */}
+        <nav className="hidden lg:flex pointer-events-auto bg-[#111] text-white rounded-b-[1.75rem] px-10 pb-4 pt-[54px] items-center gap-8 text-[12px] font-black uppercase tracking-[0.2em] shadow-[0px_12px_30px_rgba(0,0,0,0.35)] border-x-[3px] border-b-[3px] border-[#111] -mt-[38px]">
           {['skills', 'experience', 'work'].map((item) => (
             <a
               key={item}
@@ -94,11 +97,12 @@ export default function Navbar() {
         </nav>
 
         {/* MOBILE TOP-RIGHT CORNER CUTOUT */}
-        {/* FIX: Now securely anchored to absolute right-0 and perfectly bleeds 2px into the border! */}
+        {/* Extreme Overlap: -mr-[24px] and -mt-[44px] guarantees it bleeds fully into the container walls */}
         <div className="absolute right-0 top-0 lg:hidden pointer-events-none">
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-            className="pointer-events-auto flex items-center justify-center pb-4 pt-[46px] pl-6 pr-5 border-b-[3px] border-l-[3px] border-[#111] rounded-bl-[1.75rem] bg-[#111] text-white shadow-[-6px_6px_15px_rgba(0,0,0,0.4)] active:bg-[#222] transition-colors -mt-[36px] -mr-[2px]"
+            // Adjusted padding to keep the icon centered despite the massive overlap
+            className="pointer-events-auto flex items-center justify-center pb-4 pt-[58px] pl-6 pr-10 border-b-[3px] border-l-[3px] border-[#111] rounded-bl-[1.75rem] bg-[#111] text-white shadow-[-6px_6px_15px_rgba(0,0,0,0.4)] active:bg-[#222] transition-colors -mt-[44px] -mr-[24px]"
           >
             {mobileMenuOpen ? <X size={26} className="transition-transform duration-300 rotate-90" /> : <Menu size={26} className="transition-transform duration-300" />}
           </button>
@@ -112,7 +116,7 @@ export default function Navbar() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="lg:hidden pointer-events-auto absolute top-[72px] left-4 right-4 bg-[#EBE9E1] border-[4px] border-[#111] rounded-[2rem] flex flex-col p-8 gap-6 font-black text-2xl uppercase shadow-[12px_12px_0px_0px_#111]"
+              className="lg:hidden pointer-events-auto absolute top-[72px] left-6 right-6 bg-[#EBE9E1] border-[4px] border-[#111] rounded-[2rem] flex flex-col p-8 gap-6 font-black text-2xl uppercase shadow-[12px_12px_0px_0px_#111]"
             >
               {['skills', 'experience', 'work'].map(item => (
                 <motion.a 
