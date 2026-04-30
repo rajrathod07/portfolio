@@ -7,7 +7,7 @@ export default function Navbar() {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Scroll detection to hide/show the bouncy drawer
+  // Scroll detection to hide/show the drawer
   useEffect(() => {
     const scrollContainer = document.querySelector('.overflow-y-auto');
     if (!scrollContainer) return;
@@ -53,7 +53,7 @@ export default function Navbar() {
     }
   };
 
-  // High-energy, fast & bouncy spring animations
+  // High-energy, fast spring animations for the mobile dropdown
   const menuVars = {
     hidden: { opacity: 0, x: 50, scale: 0.95 },
     visible: { 
@@ -72,14 +72,17 @@ export default function Navbar() {
     <>
       {/* 1. STICKY SLIDING DRAWER LAYER */}
       <div 
-        // FAST & BOUNCY bezier curve: 450ms duration with a strong overshoot
-        className={`sticky top-0 z-[120] w-full flex justify-center pointer-events-none transition-transform duration-[450ms] ease-[cubic-bezier(0.5,1.5,0.4,1)] ${
-          isNavVisible ? 'translate-y-0' : '-translate-y-[120%]'
+        // FAST & EXTREMELY BOUNCY bezier curve (1.8 overshoot)
+        // This makes it detach slightly from the edge during the bounce!
+        className={`sticky top-0 z-[120] w-full flex justify-center pointer-events-none transition-transform duration-[550ms] ease-[cubic-bezier(0.4,1.8,0.4,1)] ${
+          isNavVisible ? 'translate-y-0' : '-translate-y-[130%]'
         }`}
       >
         
         {/* DESKTOP NOTCH */}
-        <nav className="hidden lg:flex pointer-events-auto bg-[#111] text-white rounded-b-[1.75rem] px-10 py-4 items-center gap-8 text-[12px] font-black uppercase tracking-[0.2em] shadow-[0px_12px_30px_rgba(0,0,0,0.35)] border-x-[3px] border-b-[3px] border-[#111] -mt-[3px]">
+        {/* Notice the border-[3px] (all sides) and rounded-t-2xl. 
+            The -mt-[18px] hides the top border and corners at rest, but they reveal during the bounce! */}
+        <nav className="hidden lg:flex pointer-events-auto bg-[#111] text-white rounded-b-[1.75rem] rounded-t-2xl px-10 pb-4 pt-[34px] items-center gap-8 text-[12px] font-black uppercase tracking-[0.2em] shadow-[0px_12px_30px_rgba(0,0,0,0.35)] border-[3px] border-[#111] -mt-[18px]">
           {['skills', 'experience', 'work'].map((item) => (
             <a
               key={item}
@@ -97,15 +100,15 @@ export default function Navbar() {
         </nav>
 
         {/* MOBILE TOP-RIGHT CORNER CUTOUT */}
-        {/* Absolute top-0 right-0 perfectly flushes it against the top-right frame */}
-        <div className="w-full flex justify-end lg:hidden pointer-events-none absolute right-0 top-0">
+        {/* -right-4 completely breaks it out of the padding and pushes it flush against the black bezel */}
+        <div className="w-full flex justify-end lg:hidden pointer-events-none absolute -right-4 top-0">
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-            // rounded-bl-[1.75rem] rounds only the bottom-left. 
-            // border-b and border-l only to connect seamlessly with the edge!
-            className="pointer-events-auto flex items-center justify-center pt-3 pb-4 pl-4 pr-3 border-b-[3px] border-l-[3px] border-[#111] rounded-bl-[1.75rem] bg-[#111] text-white shadow-[-5px_5px_15px_rgba(0,0,0,0.3)] active:bg-[#222] transition-colors -mt-[2px] -mr-[1px]"
+            // rounded-l-[1.75rem] on the left side, flat on the right.
+            // pt-[34px] and -mt-[18px] hides the top border at rest but centers the icon perfectly.
+            className="pointer-events-auto flex items-center justify-center pb-4 pt-[34px] pl-5 pr-5 border-[3px] border-r-0 border-[#111] rounded-l-[1.75rem] bg-[#111] text-white shadow-[-5px_5px_15px_rgba(0,0,0,0.3)] active:bg-[#222] transition-colors -mt-[18px]"
           >
-            {mobileMenuOpen ? <X size={28} className="transition-transform duration-300 rotate-90" /> : <Menu size={28} className="transition-transform duration-300" />}
+            {mobileMenuOpen ? <X size={26} className="transition-transform duration-300 rotate-90" /> : <Menu size={26} className="transition-transform duration-300" />}
           </button>
         </div>
 
@@ -117,7 +120,7 @@ export default function Navbar() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="lg:hidden pointer-events-auto absolute top-20 left-6 right-6 bg-[#EBE9E1] border-[4px] border-[#111] rounded-[2rem] flex flex-col p-8 gap-6 font-black text-2xl uppercase shadow-[12px_12px_0px_0px_#111]"
+              className="lg:hidden pointer-events-auto absolute top-[72px] left-4 right-4 bg-[#EBE9E1] border-[4px] border-[#111] rounded-[2rem] flex flex-col p-8 gap-6 font-black text-2xl uppercase shadow-[12px_12px_0px_0px_#111]"
             >
               {['skills', 'experience', 'work'].map(item => (
                 <motion.a 
@@ -146,7 +149,7 @@ export default function Navbar() {
       </div>
 
       {/* 2. BACKGROUND HEADER: Logo & Let's Talk */}
-      <header className="max-w-[1400px] w-full mx-auto px-6 md:px-12 pt-10 pb-6 flex items-center justify-between relative z-[100] -mt-[55px] lg:-mt-[65px]">
+      <header className="max-w-[1400px] w-full mx-auto px-6 md:px-12 pt-10 pb-6 flex items-center justify-between relative z-[100] -mt-[65px]">
         
         {/* Logo */}
         <div 
