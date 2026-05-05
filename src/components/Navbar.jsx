@@ -5,15 +5,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
+  const [isAtTop, setIsAtTop] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Scroll detection to hide/show the drawer
+  // Scroll detection to hide/show the drawer and toggle island mode
   useEffect(() => {
-    const scrollContainer = document.querySelector('.overflow-y-auto');
-    if (!scrollContainer) return;
+    const scrollContainer = document.querySelector('.overflow-y-auto') || window;
 
     const handleScroll = () => {
-      const currentScrollY = scrollContainer.scrollTop;
+      const currentScrollY = scrollContainer === window ? window.scrollY : scrollContainer.scrollTop;
+      
+      // Toggle island mode based on scroll depth
+      setIsAtTop(currentScrollY < 100);
       
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
         setIsNavVisible(false);
@@ -52,7 +55,6 @@ export default function Navbar() {
     }
   };
 
-  // High-energy, fast spring animations for the mobile dropdown
   const menuVars = {
     hidden: { opacity: 0, x: 50, scale: 0.95 },
     visible: { 
@@ -70,38 +72,52 @@ export default function Navbar() {
   return (
     <>
       {/* 1. STICKY SLIDING DRAWER LAYER */}
-      {/* Increased the width to w-[calc(100%+3rem)] and -ml-6 to ensure a huge overlap on the sides */}
       <div 
         className={`sticky top-0 z-[120] w-[calc(100%+3rem)] -ml-6 md:w-[calc(100%+2rem)] md:-ml-4 lg:w-full lg:ml-0 flex justify-center pointer-events-none transition-transform duration-[550ms] ease-[cubic-bezier(0.4,1.5,0.4,1)] ${
           isNavVisible ? 'translate-y-0' : '-translate-y-[130%]'
         }`}
       >
         
-        {/* DESKTOP NOTCH */}
-        {/* Increased top margin and padding so it overlaps the top edge massively */}
-        <nav className="hidden lg:flex pointer-events-auto bg-[#111] text-white rounded-b-[1.75rem] px-10 pb-4 pt-[54px] items-center gap-8 text-[12px] font-black uppercase tracking-[0.2em] shadow-[0px_12px_30px_rgba(0,0,0,0.35)] border-x-[3px] border-b-[3px] border-[#111] -mt-[38px]">
-          {['skills', 'experience', 'work'].map((item) => (
-            <a
-              key={item}
-              href={`#${item}`}
-              onClick={(e) => handleScrollClick(e, item)}
-              className="relative group overflow-hidden px-1"
-            >
-              <span className="relative z-10 group-hover:text-[#F5FF46] transition-colors duration-300">{item}</span>
-              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#F5FF46] -translate-x-[105%] group-hover:translate-x-0 transition-transform duration-[300ms] ease-[cubic-bezier(0.5,1.5,0.4,1)]"></span>
-            </a>
-          ))}
-          <div className="w-[2px] h-4 bg-white/20 mx-2"></div>
-          <a href="https://github.com/rajrathod07" target="_blank" rel="noreferrer" className="hover:text-[#F5FF46] transition-colors duration-300 px-1">GH</a>
-          <a href="https://www.linkedin.com/in/rajrathod07" target="_blank" rel="noreferrer" className="hover:text-[#F5FF46] transition-colors duration-300 px-1">LI</a>
+        {/* DESKTOP NOTCH / ISLAND */}
+        <nav 
+          className={`hidden lg:flex pointer-events-auto bg-[#111] text-white rounded-b-[1.75rem] pb-4 pt-[54px] items-center text-[12px] font-black uppercase tracking-[0.2em] shadow-[0px_12px_30px_rgba(0,0,0,0.35)] border-x-[3px] border-b-[3px] border-[#111] -mt-[38px] group relative overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.5,1.5,0.4,1)] justify-center ${
+            isAtTop 
+              ? 'px-10 max-w-[800px]' // Top styling
+              : 'px-0 max-w-[85px] hover:max-w-[800px] hover:px-10 cursor-pointer' // Island styling (Sleeker and narrower)
+          }`}
+        >
+          {/* Island Indicator (Visible only when in island mode and not hovered) */}
+          <div className={`absolute inset-0 flex items-end justify-center pb-[16px] pointer-events-none transition-all duration-300 ${isAtTop ? 'opacity-0 scale-0' : 'opacity-100 scale-100 group-hover:opacity-0 group-hover:scale-0'}`}>
+            <div className="w-[36px] h-[4px] bg-white/40 rounded-full"></div>
+          </div>
+
+          {/* Links Wrapper */}
+          <div className={`flex items-center gap-8 whitespace-nowrap transition-all duration-[500ms] ${
+            isAtTop 
+              ? 'opacity-100 translate-y-0 blur-0' 
+              : 'opacity-0 pointer-events-none translate-y-2 blur-[2px] group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:blur-0'
+          }`}>
+            {['skills', 'experience', 'work'].map((item) => (
+              <a
+                key={item}
+                href={`#${item}`}
+                onClick={(e) => handleScrollClick(e, item)}
+                className="relative group/link overflow-hidden px-1"
+              >
+                <span className="relative z-10 group-hover/link:text-[#F5FF46] transition-colors duration-300">{item}</span>
+                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#F5FF46] -translate-x-[105%] group-hover/link:translate-x-0 transition-transform duration-[300ms] ease-[cubic-bezier(0.5,1.5,0.4,1)]"></span>
+              </a>
+            ))}
+            <div className="w-[2px] h-4 bg-white/20 mx-2"></div>
+            <a href="https://github.com/rajrathod07" target="_blank" rel="noreferrer" className="hover:text-[#F5FF46] transition-colors duration-300 px-1">GH</a>
+            <a href="https://www.linkedin.com/in/rajrathod07" target="_blank" rel="noreferrer" className="hover:text-[#F5FF46] transition-colors duration-300 px-1">LI</a>
+          </div>
         </nav>
 
         {/* MOBILE TOP-RIGHT CORNER CUTOUT */}
-        {/* Extreme Overlap: -mr-[24px] and -mt-[44px] guarantees it bleeds fully into the container walls */}
         <div className="absolute right-0 top-0 lg:hidden pointer-events-none">
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-            // Adjusted padding to keep the icon centered despite the massive overlap
             className="pointer-events-auto flex items-center justify-center pb-4 pt-[58px] pl-6 pr-10 border-b-[3px] border-l-[3px] border-[#111] rounded-bl-[1.75rem] bg-[#111] text-white shadow-[-6px_6px_15px_rgba(0,0,0,0.4)] active:bg-[#222] transition-colors -mt-[44px] -mr-[24px]"
           >
             {mobileMenuOpen ? <X size={26} className="transition-transform duration-300 rotate-90" /> : <Menu size={26} className="transition-transform duration-300" />}
