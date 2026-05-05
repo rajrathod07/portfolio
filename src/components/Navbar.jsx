@@ -83,12 +83,12 @@ export default function Navbar() {
           className={`hidden lg:flex pointer-events-auto bg-[#111] text-white rounded-b-[1.75rem] pb-4 pt-[54px] items-center text-[12px] font-black uppercase tracking-[0.2em] shadow-[0px_12px_30px_rgba(0,0,0,0.35)] border-x-[3px] border-b-[3px] border-[#111] -mt-[38px] group relative overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.5,1.5,0.4,1)] justify-center ${
             isAtTop 
               ? 'px-10 max-w-[800px]' // Top styling
-              : 'px-0 max-w-[85px] hover:max-w-[800px] hover:px-10 cursor-pointer' // Island styling (Sleeker and narrower)
+              : 'px-0 max-w-[150px] hover:max-w-[800px] hover:px-10 cursor-pointer' // Island styling (Widened to 150px)
           }`}
         >
           {/* Island Indicator (Visible only when in island mode and not hovered) */}
           <div className={`absolute inset-0 flex items-end justify-center pb-[16px] pointer-events-none transition-all duration-300 ${isAtTop ? 'opacity-0 scale-0' : 'opacity-100 scale-100 group-hover:opacity-0 group-hover:scale-0'}`}>
-            <div className="w-[36px] h-[4px] bg-white/40 rounded-full"></div>
+            <div className="w-[60px] h-[4px] bg-white/40 rounded-full"></div> {/* Widened grab handle to match the larger pill */}
           </div>
 
           {/* Links Wrapper */}
