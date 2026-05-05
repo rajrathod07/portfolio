@@ -8,6 +8,7 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
+import NoiseOverlay from './components/NoiseOverlay';
 
 function App() {
   const [gateState, setGateState] = useState('waiting');
@@ -187,6 +188,7 @@ function App() {
       </div>
       
       <CustomCursor />
+      <NoiseOverlay />
     </div>
   );
 }
