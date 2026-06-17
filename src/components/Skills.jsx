@@ -48,7 +48,7 @@ export default function Skills() {
         <div>
           <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#111]/30 block mb-2">Module_02 // Capabilities</span>
           <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#111] leading-none">
-            Tech_Arsenal
+            TECH_STACK
           </h2>
         </div>
         <div className="flex items-center gap-4 font-mono text-[10px] font-black bg-[#111] text-white px-4 py-2 rounded-lg">

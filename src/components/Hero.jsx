@@ -2,14 +2,20 @@ import React from 'react';
 import { Download, Globe, Shield, Zap, Terminal, ArrowUpRight, Eye } from 'lucide-react';
 
 export default function Hero() {
+  
+  // UPDATED AND MORE RELIABLE SCROLL FUNCTION
   const handleScroll = (e, targetId) => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
+    
     if (targetElement) {
-      const offset = 80;
-      const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      // scrollIntoView is much more reliable in React regardless of parent containers
+      targetElement.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    } else {
+      console.warn(`Could not find element with id: ${targetId}`);
     }
   };
 
@@ -112,15 +118,15 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* BOX 4: CASE STUDIES */}
+        {/* BOX 4: ABOUT ME LINK */}
         <div 
-          onClick={(e) => handleScroll(e, 'work')}
+          onClick={(e) => handleScroll(e, 'about')}
           className="col-span-12 lg:col-span-8 bg-[#F5FF46] border-[3px] border-[#111] rounded-[2rem] p-8 flex items-center justify-between shadow-[8px_8px_0px_0px_#111] cursor-pointer group hover:bg-[#111] transition-all duration-500 min-h-[160px]"
         >
           <div className="flex flex-col gap-1">
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#111] group-hover:text-[#F5FF46]/50 transition-colors">Directory_02</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#111] group-hover:text-[#F5FF46]/50 transition-colors">Module_01 // Bio</span>
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-[#111] group-hover:text-white transition-colors">
-              Case_Studies
+              About_Me
             </h2>
           </div>
           <div className="w-14 h-14 md:w-16 md:h-16 bg-white border-[3px] border-[#111] rounded-full flex items-center justify-center shadow-[4px_4px_0px_0px_#111] group-hover:rotate-45 group-hover:bg-[#F5FF46] transition-all">
@@ -130,7 +136,6 @@ export default function Hero() {
 
       </div>
 
-      {/* FOOTER TICKER */}
       <div className="mt-10 overflow-hidden border-y-[2px] border-[#111]/5 py-4 pointer-events-none opacity-30">
         <div className="flex gap-16 animate-[marquee_30s_linear_infinite] whitespace-nowrap font-mono text-[9px] font-black uppercase tracking-[0.5em] text-[#111]">
            <span>React // Cyber_Security // Pentesting // Architecture // Studio_v2.0</span>
@@ -138,7 +143,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* FIX: Removed the `jsx` attribute. It is now a standard style block */}
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0); }

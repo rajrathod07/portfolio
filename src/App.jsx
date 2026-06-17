@@ -158,13 +158,13 @@ function App() {
 
       {/* MAIN SITE CONTENT */}
       <div 
-        className={`absolute inset-0 transition-all duration-[1000ms] ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col px-2 pt-2 pb-1 md:px-4 md:pt-4 md:pb-2 ${
+        className={`absolute inset-0 transition-all duration-[1000ms] ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col px-1 pt-1 pb-1 md:px-2 md:pt-2 md:pb-1 ${
           gateState === 'launching' || gateState === 'done' 
             ? 'opacity-100 scale-100 translate-y-0 blur-0' 
             : 'opacity-0 scale-[0.98] -translate-y-4 pointer-events-none blur-sm'
         }`}
       >
-        <div className="relative w-full h-full bg-[#EBE9E1] flex flex-col border-[2px] md:border-[4px] border-[#111] rounded-2xl md:rounded-[2rem] shadow-2xl overflow-hidden">
+        <div className="relative w-full h-full bg-[#EBE9E1] flex flex-col border-[2px] md:border-[3px] border-[#111] rounded-2xl md:rounded-[2rem] shadow-2xl overflow-hidden">
           
           <div className="absolute inset-0 pointer-events-none opacity-[0.15] bg-[radial-gradient(#111_1.5px,transparent_1.5px)] [background-size:36px_36px] z-0"></div>
 
