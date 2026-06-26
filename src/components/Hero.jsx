@@ -3,13 +3,11 @@ import { Download, Globe, Shield, Zap, Terminal, ArrowUpRight, Eye } from 'lucid
 
 export default function Hero() {
   
-  // UPDATED AND MORE RELIABLE SCROLL FUNCTION
   const handleScroll = (e, targetId) => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
     
     if (targetElement) {
-      // scrollIntoView is much more reliable in React regardless of parent containers
       targetElement.scrollIntoView({ 
         behavior: 'smooth', 
         block: 'start' 
@@ -65,8 +63,8 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* BOX 2: PORTRAIT */}
-        <div className="no-cursor relative z-10 col-span-12 md:col-span-12 lg:col-span-4 bg-[#111] border-[3px] border-[#111] rounded-[2rem] overflow-hidden shadow-[8px_8px_0px_0px_#F5FF46] group min-h-[300px] md:h-[380px] cursor-pointer">
+        {/* BOX 2: PORTRAIT (STABILIZED AT 340PX FOR MOBILE) */}
+        <div className="no-cursor relative z-10 col-span-12 md:col-span-12 lg:col-span-4 bg-[#111] border-[3px] border-[#111] rounded-[2rem] overflow-hidden shadow-[8px_8px_0px_0px_#F5FF46] group h-[340px] md:h-[380px] cursor-pointer">
           <img 
             src="/profile1.jpg" 
             alt="Raj Rathod" 
