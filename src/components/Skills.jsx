@@ -52,7 +52,7 @@ const skillCategories = [
         frontIcon: <Flame size={12} strokeWidth={2.5} />, frontColor: 'bg-[#FF4646]'
       },
       { 
-        name: 'Cybersecurity', level: 75, 
+        name: 'Cybersecurity', level: 35, 
         // Directly matches your reference image! Green Check + Yellow Shield
         frontIcon: <Check size={12} strokeWidth={3} />, frontColor: 'bg-[#4ade80]',
         backIcon: <Shield size={12} strokeWidth={2.5} />, backColor: 'bg-[#F5FF46]' 
@@ -77,11 +77,11 @@ const skillCategories = [
         backIcon: <Globe size={12} strokeWidth={2.5} />, backColor: 'bg-white' 
       },
       { 
-        name: 'Linux Terminal', level: 80, 
+        name: 'Linux Terminal', level: 60, 
         frontIcon: <TerminalSquare size={12} strokeWidth={2.5} />, frontColor: 'bg-[#4ade80]'
       },
       { 
-        name: 'Problem Solving', level: 85, 
+        name: 'Problem Solving', level: 75, 
         frontIcon: <Lightbulb size={12} strokeWidth={2.5} />, frontColor: 'bg-[#F5FF46]'
       },
       { 

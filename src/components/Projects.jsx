@@ -9,8 +9,8 @@ const projects = [
     description: 'A military-grade password vault with AES-256 encryption logic and secure database bridging.',
     tech: ['PHP', 'MySQL', 'AES_256', 'JS'],
     bgColor: 'bg-[#F5FF46]',
-    github: 'https://github.com/rajrathod07', 
-    demo: 'https://passvault.gt.tc'      
+    github: 'https://github.com/rajrathod07',
+    demo: 'https://passvault.gt.tc'
   },
   {
     id: '02',
@@ -22,18 +22,39 @@ const projects = [
     demo: 'https://rerent.page.gd'
   },
 
-    {
+  {
     id: '03',
     title: 'VJM College Platform',
     description: 'A full-scale, responsive institutional web platform completely engineered from scratch with a premium UI architecture.',
     tech: ['React', 'Tailwind', 'Framer', 'Vite'],
-    bgColor: 'bg-white',
-    github: 'https://github.com/rajrathod07', 
-    demo: 'https://shrivjmodhacollege-raj.vercel.app/' 
+    bgColor: 'bg-[#F5FF46]',
+    github: 'https://github.com/rajrathod07',
+    demo: 'https://shrivjmodhacollege-raj.vercel.app/'
   },
 
   {
     id: '04',
+    title: 'Internship Portfolio',
+    description: 'A repository of responsive UI components and state architectures developed in-studio.',
+    tech: ['React', 'UI_Logic', 'Framer', 'Auth'],
+    bgColor: 'bg-white',
+    github: 'https://github.com/rajrathod07/Internship-Portfolio-HTML-CSS-JavaScript-Tasks-Projects',
+    demo: 'https://rajrathod07.github.io/Internship-Portfolio-HTML-CSS-JavaScript-Tasks-Projects/'
+  },
+
+  {
+    id: '05',
+    title: 'Women Safety App UI',
+    description: 'A mobile-first UI architecture for a women safety application.',
+    tech: ['React', 'UI_Logic', 'Framer', 'UI_Design'],
+    bgColor: 'bg-[#F5FF46]',
+    github: 'https://github.com/rajrathod07',
+    demo: 'https://women-safety-xi-gules.vercel.app'
+  },
+
+
+  {
+    id: '06',
     title: 'NetFlow Hub',
     description: 'An educational hub created to simplify complex networking protocols and cyber-security fundamentals.',
     tech: ['Networking', 'Cyber_Logic', 'HTML/CSS'],
@@ -41,20 +62,21 @@ const projects = [
     github: 'https://github.com/rajrathod07/netflow',
     demo: 'https://rajrathod07.github.io/netflow'
   },
+
   {
-    id: '05',
-    title: 'Internship Portfolio',
-    description: 'A repository of responsive UI components and state architectures developed in-studio.',
-    tech: ['React', 'UI_Logic', 'Framer', 'Auth'],
+    id: '07',
+    title: 'Razz Chat App',
+    description: 'A real-time chat application with a secure backend and responsive UI.',
+    tech: ['React', 'MongoDB', 'Tailwind', 'Framer'],
     bgColor: 'bg-[#F5FF46]',
-    github: 'https://github.com/rajrathod07/Internship-Portfolio-HTML-CSS-JavaScript-Tasks-Projects',
-    demo: 'https://rajrathod07.github.io/Internship-Portfolio-HTML-CSS-JavaScript-Tasks-Projects/'
+    github: 'https://github.com/rajrathod07',
+    demo: 'https://razz-chat-appio.vercel.app'
   }
 ];
 
 // Extracted Card Component to avoid duplicating code between main view and full-page view
 const ProjectCard = ({ project, index }) => (
-  <motion.div 
+  <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
@@ -78,7 +100,7 @@ const ProjectCard = ({ project, index }) => (
       <h3 className="text-xl md:text-2xl font-black uppercase mb-3 text-[#111] tracking-tighter leading-tight group-hover:tracking-tight transition-all line-clamp-2">
         {project.title}
       </h3>
-      
+
       <p className="text-[#000000] font-bold text-xs mb-6 leading-relaxed flex-grow">
         {project.description}
       </p>
@@ -95,17 +117,17 @@ const ProjectCard = ({ project, index }) => (
 
     {/* BUTTON FOOTER */}
     <div className="px-6 md:px-8 pb-8 flex gap-3 relative z-10 mt-4">
-      <a 
-        href={project.github} 
-        target="_blank" 
-        rel="noopener noreferrer" 
+      <a
+        href={project.github}
+        target="_blank"
+        rel="noopener noreferrer"
         className="flex-grow bg-[#111] text-white py-3.5 rounded-xl flex items-center justify-center gap-2 font-black text-[10px] uppercase tracking-widest hover:bg-[#F5FF46] hover:text-[#111] transition-all border-[2px] border-[#111] shadow-[4px_4px_0px_0px_#111] hover:shadow-none active:translate-y-1"
       >
         <Code2 size={14} /> <span className="hidden sm:inline">Repository</span><span className="sm:hidden">Repo</span>
       </a>
-      <a 
-        href={project.demo} 
-        target="_blank" 
+      <a
+        href={project.demo}
+        target="_blank"
         rel="noopener noreferrer"
         className="w-14 sm:w-16 bg-white border-[2px] border-[#111] rounded-xl flex flex-col items-center justify-center hover:bg-[#111] hover:text-white transition-all group/btn shadow-[4px_4px_0px_0px_#111] hover:shadow-none active:translate-y-1"
       >
@@ -135,16 +157,16 @@ export default function Projects() {
   return (
     <>
       <section id="work" className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-16 md:py-24 select-none">
-        
+
         {/* SECTION HEADER */}
         <div className="flex flex-col md:flex-row md:items-end justify-between border-b-[3px] border-[#111] pb-6 mb-12 gap-4">
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3">
-               <div className="bg-[#FF4646] text-white px-2.5 py-1 rounded border-2 border-[#111] shadow-[2px_2px_0px_#111] flex items-center gap-2">
-                  <Radio size={12} className="animate-pulse" />
-                  <span className="text-[8px] font-black uppercase tracking-widest">Live_Archive</span>
-               </div>
-               <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#111]/40">Log_Unit_03</span>
+              <div className="bg-[#FF4646] text-white px-2.5 py-1 rounded border-2 border-[#111] shadow-[2px_2px_0px_#111] flex items-center gap-2">
+                <Radio size={12} className="animate-pulse" />
+                <span className="text-[8px] font-black uppercase tracking-widest">Live_Archive</span>
+              </div>
+              <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#111]/40">Log_Unit_03</span>
             </div>
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#111] leading-none">
               Selected_Work
@@ -166,7 +188,7 @@ export default function Projects() {
 
         {/* VIEW ALL BUTTON */}
         <div className="mt-12 flex justify-center">
-          <button 
+          <button
             onClick={() => setIsFullPageOpen(true)}
             className="px-10 py-5 bg-[#F5FF46] text-[#111] border-[3px] border-[#111] font-black uppercase tracking-widest text-sm rounded-2xl shadow-[6px_6px_0px_0px_#111] hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] transition-all flex items-center gap-3 active:scale-95"
           >
@@ -184,33 +206,35 @@ export default function Projects() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-50 bg-[#e5e5e5] overflow-y-auto select-none"
+            /* 🚀 FIX: Increased z-index to z-[999] to completely cover the global Navbar */
+            className="fixed inset-0 z-[999] bg-[#e5e5e5] overflow-y-auto select-none"
           >
             {/* Background Texture */}
             <div className="fixed inset-0 pointer-events-none opacity-[0.04] bg-[radial-gradient(#111_1.5px,transparent_1.5px)] [background-size:24px_24px]"></div>
 
-            {/* Sticky Header */}
-            <div className="sticky top-0 z-50 bg-[#e5e5e5] border-b-[3px] border-[#111] px-6 py-4 flex justify-between items-center shadow-md">
-              <div className="flex items-center gap-3">
-                <div className="bg-[#111] text-[#F5FF46] p-2 rounded border-[2px] border-[#111]">
-                  <FolderGit2 size={20} />
+            {/* 🚀 FIX: Responsive Sticky Header with higher inner z-index */}
+            <div className="sticky top-0 z-[1000] bg-[#e5e5e5] border-b-[3px] border-[#111] px-4 md:px-6 py-3 md:py-4 flex justify-between items-center shadow-md">
+              <div className="flex items-center gap-2 md:gap-3 overflow-hidden">
+                <div className="bg-[#111] text-[#F5FF46] p-1.5 md:p-2 rounded border-[2px] border-[#111] shrink-0">
+                  <FolderGit2 className="w-4 h-4 md:w-5 md:h-5" />
                 </div>
-                <h2 className="text-xl md:text-3xl font-black uppercase tracking-tighter text-[#111] leading-none mt-1">
+                {/* Added 'truncate' so it cuts off neatly on super narrow phone screens instead of wrapping */}
+                <h2 className="text-lg md:text-3xl font-black uppercase tracking-tighter text-[#111] leading-none mt-1 truncate">
                   Complete_Archive
                 </h2>
               </div>
-              
-              <button 
+
+              <button
                 onClick={() => setIsFullPageOpen(false)}
-                className="w-12 h-12 bg-white border-[3px] border-[#111] rounded-xl flex items-center justify-center hover:bg-[#FF4646] hover:text-white transition-all shadow-[4px_4px_0px_0px_#111] hover:shadow-none active:translate-y-1"
+                className="w-10 h-10 md:w-12 md:h-12 bg-white border-[3px] border-[#111] rounded-xl flex items-center justify-center hover:bg-[#FF4646] hover:text-white transition-all shadow-[4px_4px_0px_0px_#111] hover:shadow-none active:translate-y-1 shrink-0"
               >
-                <X size={24} strokeWidth={3} />
+                <X strokeWidth={3} className="w-5 h-5 md:w-6 md:h-6" />
               </button>
             </div>
 
             {/* 3-COLUMN FULL GRID CONTENT */}
-            <div className="p-6 md:p-10 max-w-[1400px] mx-auto min-h-screen relative z-10">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pb-20">
+            <div className="p-4 md:p-10 max-w-[1400px] mx-auto min-h-screen relative z-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 pb-20">
                 {projects.map((project, index) => (
                   <ProjectCard key={project.id} project={project} index={index} />
                 ))}
