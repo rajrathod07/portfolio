@@ -1,0 +1,53 @@
+/* ALL CONTENT ELEMENTS ARE NOW z-index 10 */
+.counter {
+  position: relative;
+  z-index: 10; 
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+  margin-bottom: 24px;
+}
+
+.hero {
+  position: relative;
+  z-index: 10; /* Above spotlight */
+
+  .base, .framework, .vite {
+    inset-inline: 0;
+    margin: 0 auto;
+  }
+}
+
+#center {
+  position: relative;
+  z-index: 10; /* Above spotlight */
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  place-content: center;
+  place-items: center;
+  flex-grow: 1;
+}
+
+#next-steps {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  border-top: 1px solid var(--border);
+  text-align: left;
+}
+
+/* GLOBAL LAYERING FIX */
+section, main {
+  position: relative;
+  z-index: 0; /* Background is the floor */
+}
+
+/* Ensure the system cursor is visible */
+* {
+  cursor: auto !important;
+}
